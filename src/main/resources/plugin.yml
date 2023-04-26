@@ -1,0 +1,9 @@
+name: Crates
+main: net.theiceninja.crates.CratesPlugin
+author: TheIceNinja
+api-version: 1.19
+version: 1.0.0
+commands:
+  crates:
+    description: crates main command
+    permission: crates.admin
