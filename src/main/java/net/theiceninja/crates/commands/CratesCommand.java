@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CommandInfo(name = "crates", permission = "crates.admin", usage = "addchest|deletechest|editchest")
+@CommandInfo(name = "crates", permission = "crates.admin", usage = "addchest|deletechest|listchest|additem|givekey|removeitem")
 public class CratesCommand extends PluginCommand implements TabCompleter {
 
     private final List<SubCommand> subCommands = new ArrayList<>();
@@ -33,7 +33,9 @@ public class CratesCommand extends PluginCommand implements TabCompleter {
     public void execute(Player player, String[] args) {
         Optional<SubCommand> optionalSubCommand = subCommands.stream().filter(subCommand -> subCommand.getName().equalsIgnoreCase(args[0])).findFirst();
         if (optionalSubCommand.isEmpty()) {
-            player.sendMessage(ColorUtils.color("&cעקוב אחרי מה אתה צריך " + getCommandInfo().usage()));
+            player.sendMessage(ColorUtils.color(
+                    "&#F4E311שימוש: /" + getCommandInfo().name() + " " + getCommandInfo().usage()
+            ));
             return;
         }
 

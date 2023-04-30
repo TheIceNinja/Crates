@@ -2,7 +2,6 @@ package net.theiceninja.crates.chests.listeners;
 
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.managers.ChestManager;
-import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;

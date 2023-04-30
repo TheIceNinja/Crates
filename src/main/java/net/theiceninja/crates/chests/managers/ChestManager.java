@@ -65,8 +65,8 @@ import java.util.Optional;
         chestFile.get().set("chests." + chest.getId() + ".type", chest.getChestType().toString());
         LocationUtility.saveLocation(
                 chest.getChestLocation(),
-                chestFile.get().createSection("chests." + chest.getId() + ".location"
-                ));
+                chestFile.get().createSection("chests." + chest.getId() + ".location")
+        );
 
         chestList.add(chest);
         chestFile.save();
