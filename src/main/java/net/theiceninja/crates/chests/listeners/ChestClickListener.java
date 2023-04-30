@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.managers.ChestManager;
 import net.theiceninja.ninjaapi.ColorUtils;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;

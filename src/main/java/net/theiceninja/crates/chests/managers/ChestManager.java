@@ -49,6 +49,7 @@ import java.util.Optional;
 
     public Optional<Chest> findChest(int id) {
         if (chestList.isEmpty()) return Optional.empty();
+
         return chestList.stream().filter(existing -> existing.getId() == id).findAny();
     }
 
@@ -104,6 +105,8 @@ import java.util.Optional;
                     items,
                     this
             );
+
+            System.out.println(chest.getChestLocation());
 
             chestList.add(chest);
         }

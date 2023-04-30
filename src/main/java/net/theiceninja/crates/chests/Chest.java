@@ -35,6 +35,7 @@ import java.util.UUID;
 
     private final ChestManager chestManager;
 
+    // loading from configuration file
     public Chest(int id, ChestType chestType, Location chestLocation, List<ItemStack> items, ChestManager chestManager) {
         this.id = id;
         this.chestType = chestType;
@@ -45,6 +46,7 @@ import java.util.UUID;
         setupArmorStands();
     }
 
+    // creating the chest
     public Chest(int id, ChestType chestType, ChestManager chestManager) {
         this.id = id;
         this.chestType = chestType;
@@ -53,7 +55,11 @@ import java.util.UUID;
     }
 
     public Inventory getInventory() {
-       Inventory itemsMenu = chestManager.getPlugin().getServer().createInventory(null, 27, "דברים שאתה יכול לקבל");
+       Inventory itemsMenu = chestManager.getPlugin().getServer().createInventory(
+               null,
+               27,
+               "דברים שאתה יכול לקבל"
+       );
         for (int i = 0; i < items.size(); i++) {
             ItemStack item = items.get(i);
             itemsMenu.addItem(item);
@@ -83,7 +89,10 @@ import java.util.UUID;
         items.removeIf(existing -> existing.equals(item));
         if (item.getItemMeta() == null) return;
 
-        chestManager.getChestFile().get().set("chests." + id + ".items." + item.getItemMeta().getDisplayName(), null);
+        chestManager.getChestFile().get().set(
+                "chests." + id + ".items." + item.getItemMeta().getDisplayName()
+                , null
+        );
         chestManager.getChestFile().save();
     }
 
@@ -119,9 +128,7 @@ import java.util.UUID;
 
     @Override
     public void reload() {
-        if (displayNameArmorStand != null) destroyArmorStand();
-        if (displayItemArmorStand != null) this.displayItemArmorStand.remove();
-
+        destroyArmorStand();
         setupArmorStands();
     }
 
@@ -179,7 +186,12 @@ import java.util.UUID;
         int randomNumber = (int) randomizer(-1, items.size());
         if (this.gambleTask != null) this.gambleTask.cancel();
 
-        this.gambleTask = new GambleTask(player.getUniqueId(), randomNumber, items.size() - 1, this);
+        this.gambleTask = new GambleTask(
+                player.getUniqueId(),
+                randomNumber,
+                items.size() - 1,
+                this
+        );
         this.gambleTask.runTaskTimer(chestManager.getPlugin(), 0, 16);
     }
 

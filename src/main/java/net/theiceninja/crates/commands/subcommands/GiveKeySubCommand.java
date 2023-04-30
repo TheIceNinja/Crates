@@ -3,7 +3,6 @@ package net.theiceninja.crates.commands.subcommands;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.CratesPlugin;
 import net.theiceninja.crates.api.chest.ChestType;
-import net.theiceninja.crates.chests.managers.ChestManager;
 import net.theiceninja.ninjaapi.ColorUtils;
 import net.theiceninja.ninjaapi.ItemBuilder;
 import net.theiceninja.ninjaapi.SubCommand;

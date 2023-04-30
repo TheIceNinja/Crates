@@ -13,12 +13,14 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GambleTask extends BukkitRunnable {
+
     private final int randomNumber;
     private int timeItemLength;
-    private final Chest chest;
     private int firstRoundTimeLength;
 
+    private final Chest chest;
     private final Player player;
+
     private boolean isFirstRound = true;
 
     public GambleTask(UUID uuid, int randomNumber, int length, Chest chest) {
@@ -37,6 +39,7 @@ public class GambleTask extends BukkitRunnable {
 
         if (player == null) {
             cancel();
+            chest.resetDisplayItemArmorStand();
             return;
         }
 
