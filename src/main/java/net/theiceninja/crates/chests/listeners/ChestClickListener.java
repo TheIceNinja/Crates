@@ -32,8 +32,10 @@ public class ChestClickListener implements Listener {
                 chest.cancel(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
                 return;
             }
+
             if (event.getItem() == null) return;
             if (!event.getItem().hasItemMeta()) return;
+            if (event.getItem().getItemMeta() == null) return;
 
             String itemName = event.getItem().getItemMeta().getDisplayName();
             if (itemName.contains(ColorUtils.color(chest.getChestType().getPrefix()))) {

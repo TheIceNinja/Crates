@@ -64,15 +64,20 @@ public class GambleTask extends BukkitRunnable {
             chest.getDisplayItemArmorStand().getEquipment().setHelmet(item);
             player.getInventory().addItem(item);
             player.playSound(player, Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1);
-            player.sendMessage(ColorUtils.color("&#13F338זכית ב &#F3C313" +
+            player.sendMessage(ColorUtils.color(
+                    "&r\n" +
+                    "&#13F338זכית ב &#F3C313" +
                     (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                    + " &#13B3F3" + item.getAmount()));
+                    + " &#13B3F3" + item.getAmount())
+                    + "\n&r"
+            );
 
             Plugin plugin = chest.getChestManager().getPlugin();
             AtomicInteger timeLeftToSpin = new AtomicInteger(16);
             AtomicInteger yaw = new AtomicInteger();
             plugin.getServer().getScheduler().runTaskTimer(plugin, task -> {
                 if (chest.getDisplayItemArmorStand().getEquipment() == null) task.cancel();
+
                 timeLeftToSpin.getAndDecrement();
                 yaw.addAndGet(30);
                 if (timeLeftToSpin.get() <= 0) {

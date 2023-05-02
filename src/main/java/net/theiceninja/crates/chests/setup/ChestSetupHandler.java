@@ -23,6 +23,7 @@ import java.util.UUID;
 public class ChestSetupHandler implements ISetupHandler {
 
     @Getter private final Map<UUID, Chest> setup;
+
     @Getter private final ChestManager chestManager;
     private final PlayerRollbackManager rollbackManager;
 
