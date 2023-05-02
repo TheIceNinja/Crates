@@ -19,6 +19,7 @@ public class InteractListener implements Listener {
         if (!event.hasItem()) return;
         if (event.getItem() == null) return;
         if (!event.getItem().hasItemMeta()) return;
+        if (event.getItem().getItemMeta() == null) return;
 
         String itemName = event.getItem().getItemMeta().getDisplayName();
         if (itemName.equals(ColorUtils.color("&cיציאה"))) {
@@ -37,5 +38,4 @@ public class InteractListener implements Listener {
             chestSetupHandler.removeFromSetup(event.getPlayer());
         }
     }
-
 }

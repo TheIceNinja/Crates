@@ -167,7 +167,7 @@ import java.util.UUID;
     @Override
     public void cancel(@NotNull Player player, @NotNull String errorMessage) {
         player.setVelocity(player.getLocation().getDirection().multiply(-0.5));
-        player.sendMessage(ColorUtils.color("&#E81E33אתה צריך מפתח כדי לפתוח את התיבה!"));
+        player.sendMessage(ColorUtils.color(errorMessage));
         player.playSound(player, Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);
     }
 

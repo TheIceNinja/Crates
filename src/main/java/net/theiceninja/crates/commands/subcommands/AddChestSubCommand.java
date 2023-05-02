@@ -40,7 +40,11 @@ public class AddChestSubCommand implements SubCommand {
             );
 
             chestManager.getChestSetupHandler().addToSetup(player, chest);
-            player.sendMessage(ColorUtils.color("&bיצרת עכשיו את התיבה " + args[1] + " &bעם הסוג " + ChestType.valueOf(args[2].toUpperCase()).getPrefix()));
+            player.sendMessage(ColorUtils.color(
+                    "&bיצרת עכשיו את התיבה "
+                            + args[1] + " &bעם הסוג "
+                            + ChestType.valueOf(args[2].toUpperCase()).getPrefix())
+            );
         } catch (NumberFormatException ex) {
             player.sendMessage(ColorUtils.color("&#E81E33אתה צריך להקליד איידי של מספר!"));
         }

@@ -17,7 +17,6 @@ public class CratesPlugin extends JavaPlugin {
         this.chestManager = new ChestManager(this);
         getCommand("crates").setExecutor(new CratesCommand(chestManager));
         getCommand("crates").setTabCompleter(new CratesCommand(chestManager));
-
     }
 
     @Override

@@ -41,7 +41,10 @@ public class ChestClickListener implements Listener {
                 chest.openChest(event.getPlayer());
             } else {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.cancel(event.getPlayer(), "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת");
+                chest.cancel(
+                        event.getPlayer(),
+                        "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת"
+                );
             }
         }
     }
