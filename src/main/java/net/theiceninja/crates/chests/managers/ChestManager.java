@@ -72,7 +72,7 @@ public class ChestManager implements IChestManager {
     @Override
     public void deleteChest(IChest iChest) {
         Chest chest = (Chest) iChest;
-        chest.deleteChest();
+        chest.delete();
         chestList.removeIf(existing -> existing.equals(chest));
         chestFile.get().set("chests." + chest.getId(), null);
 

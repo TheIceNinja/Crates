@@ -10,10 +10,10 @@ public interface IChest {
     void addItem(@NotNull ItemStack item);
     void removeItem(int index);
     void destroyArmorStand();
-    void deleteChest();
+    void delete();
 
-    void openChest(@NotNull Player player);
-    void cancel(@NotNull Player player, @NotNull String errorMessage);
+    void open(@NotNull Player player);
+    void cancelClick(@NotNull Player player, @NotNull String errorMessage);
     boolean isOpen();
     void setOpen(boolean open);
 

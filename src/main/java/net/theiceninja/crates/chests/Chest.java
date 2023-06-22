@@ -146,19 +146,19 @@ public class Chest implements IChest {
     }
 
     @Override
-    public void deleteChest() {
+    public void delete() {
         destroyArmorStand();
     }
 
     @Override
-    public void openChest(@NotNull Player player) {
+    public void open(@NotNull Player player) {
         if (isOpen()) {
-            cancel(player, "&#E81E33יש מישהו כרגע שפותח, אנא המתן.");
+            cancelClick(player, "&#E81E33יש מישהו כרגע שפותח, אנא המתן.");
             return;
         }
 
         if (items.isEmpty()) {
-            cancel(player, "&#E81E33אין דברים בתיבה הזאת.");
+            cancelClick(player, "&#E81E33אין דברים בתיבה הזאת.");
             return;
         }
 
@@ -172,7 +172,7 @@ public class Chest implements IChest {
     }
 
     @Override
-    public void cancel(@NotNull Player player, @NotNull String errorMessage) {
+    public void cancelClick(@NotNull Player player, @NotNull String errorMessage) {
         player.setVelocity(player.getLocation().getDirection().multiply(-0.5));
         player.sendMessage(ColorUtils.colorString(errorMessage));
         player.playSound(player, Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);

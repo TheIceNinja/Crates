@@ -29,7 +29,7 @@ public class ChestClickListener implements Listener {
         } else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             event.setUseInteractedBlock(Event.Result.DENY);
             if (!event.hasItem()) {
-                chest.cancel(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
+                chest.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
                 return;
             }
 
@@ -40,10 +40,10 @@ public class ChestClickListener implements Listener {
             String itemName = event.getItem().getItemMeta().getDisplayName();
             if (itemName.contains(ColorUtils.colorString(chest.getType().getPrefix()))) {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.openChest(event.getPlayer());
+                chest.open(event.getPlayer());
             } else {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.cancel(
+                chest.cancelClick(
                         event.getPlayer(),
                         "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת"
                 );
