@@ -9,8 +9,8 @@ import net.theiceninja.crates.chests.setup.listeners.BlockPlaceListener;
 import net.theiceninja.crates.chests.setup.listeners.DropItemsListener;
 import net.theiceninja.crates.chests.setup.listeners.InteractListener;
 import net.theiceninja.crates.chests.setup.listeners.QuitListener;
-import net.theiceninja.ninjaapi.ItemBuilder;
-import net.theiceninja.ninjaapi.PlayerRollbackManager;
+import net.theiceninja.utilitys.spigot.ItemBuilder;
+import net.theiceninja.utilitys.spigot.PlayerRollback;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,12 +25,12 @@ public class ChestSetupHandler implements ISetupHandler {
     @Getter private final Map<UUID, Chest> setup;
 
     @Getter private final ChestManager chestManager;
-    private final PlayerRollbackManager rollbackManager;
+    private final PlayerRollback rollbackManager;
 
     public ChestSetupHandler(ChestManager chestManager) {
         this.chestManager = chestManager;
         this.setup = new HashMap<>();
-        this.rollbackManager = new PlayerRollbackManager();
+        this.rollbackManager = new PlayerRollback();
 
         chestManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), chestManager.getPlugin());
         chestManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), chestManager.getPlugin());
@@ -49,7 +49,7 @@ public class ChestSetupHandler implements ISetupHandler {
                 0,
                 new ItemBuilder(Material.CHEST)
                         .setCustomModelData(0)
-                        .setDisplayName(chest.getChestType().getPrefix())
+                        .setDisplayName(chest.getType().getPrefix())
                         .setGlow(true)
                         .setLore("תשים את זה פשוט וזהו")
                         .build()

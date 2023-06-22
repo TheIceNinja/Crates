@@ -3,7 +3,7 @@ package net.theiceninja.crates.chests.listeners;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.managers.ChestManager;
-import net.theiceninja.ninjaapi.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -38,7 +38,7 @@ public class ChestClickListener implements Listener {
             if (event.getItem().getItemMeta() == null) return;
 
             String itemName = event.getItem().getItemMeta().getDisplayName();
-            if (itemName.contains(ColorUtils.color(chest.getChestType().getPrefix()))) {
+            if (itemName.contains(ColorUtils.colorString(chest.getType().getPrefix()))) {
                 event.setUseInteractedBlock(Event.Result.DENY);
                 chest.openChest(event.getPlayer());
             } else {

@@ -3,7 +3,7 @@ package net.theiceninja.crates.chests.setup.listeners;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.setup.ChestSetupHandler;
-import net.theiceninja.ninjaapi.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -22,13 +22,13 @@ public class InteractListener implements Listener {
         if (event.getItem().getItemMeta() == null) return;
 
         String itemName = event.getItem().getItemMeta().getDisplayName();
-        if (itemName.equals(ColorUtils.color("&cיציאה"))) {
+        if (itemName.equals(ColorUtils.colorString("&cיציאה"))) {
             chestSetupHandler.getChestManager().getChestFile().reloadConfig();
             chestSetupHandler.removeFromSetup(event.getPlayer());
-        } else if (itemName.equals(ColorUtils.color("&aאישור"))) {
+        } else if (itemName.equals(ColorUtils.colorString("&aאישור"))) {
             Chest chest = chestSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
             if (chest.getChestLocation() == null) {
-                event.getPlayer().sendMessage(ColorUtils.color("&cלא שמת לו מיקום."));
+                event.getPlayer().sendMessage(ColorUtils.colorString("&cלא שמת לו מיקום."));
                 return;
             }
 

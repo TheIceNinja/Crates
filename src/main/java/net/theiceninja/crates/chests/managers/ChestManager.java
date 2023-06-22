@@ -10,20 +10,19 @@ import net.theiceninja.crates.chests.listeners.BlockBreakListener;
 import net.theiceninja.crates.chests.listeners.ChestClickListener;
 import net.theiceninja.crates.chests.listeners.PlayerInventoryClickListener;
 import net.theiceninja.crates.chests.setup.ChestSetupHandler;
-import net.theiceninja.crates.utils.LocationUtility;
-import net.theiceninja.ninjaapi.ConfigurationFile;
+import net.theiceninja.utilitys.spigot.LocationUtility;
+import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-@Getter public class ChestManager implements IChestManager {
+@Getter
+public class ChestManager implements IChestManager {
 
-    private final List<Chest> chestList = new ArrayList<>();
+    private final Set<Chest> chestList = new HashSet<>();
 
     private final ConfigurationFile chestFile;
 
@@ -34,8 +33,6 @@ import java.util.Optional;
         this.plugin = plugin;
         this.chestFile = new ConfigurationFile(plugin, "chests");
         this.chestSetupHandler = new ChestSetupHandler(this);
-
-        if (chestFile.get().getConfigurationSection("chests") == null) return;
         loadChests();
 
         plugin.getServer().getPluginManager().registerEvents(new ChestClickListener(this), plugin);
@@ -62,8 +59,8 @@ import java.util.Optional;
     public void saveChest(IChest iChest) {
         Chest chest = (Chest) iChest;
         chestFile.get().set("chests." + chest.getId() + ".id", chest.getId());
-        chestFile.get().set("chests." + chest.getId() + ".type", chest.getChestType().toString());
-        LocationUtility.saveLocation(
+        chestFile.get().set("chests." + chest.getId() + ".type", chest.getType().toString());
+        LocationUtility.setLocation(
                 chest.getChestLocation(),
                 chestFile.get().createSection("chests." + chest.getId() + ".location")
         );
@@ -86,11 +83,13 @@ import java.util.Optional;
 
     @Override
     public void loadChests() {
+        if (chestFile.get().getConfigurationSection("chests") == null) return;
+
         for (String chestID : chestFile.get().getConfigurationSection("chests").getKeys(false)) {
             final ConfigurationSection chestSection = chestFile.get().getConfigurationSection("chests." + chestID);
             if (chestSection == null) break;
 
-            final List<ItemStack> items = new ArrayList<>();
+            final Set<ItemStack> items = new HashSet<>();
             if (chestSection.getConfigurationSection("items") != null)
                 chestSection.getConfigurationSection("items").getKeys(false).forEach(item -> {
                     ItemStack itemStack = chestSection.getItemStack("items." + item);
@@ -105,10 +104,13 @@ import java.util.Optional;
                     items,
                     this
             );
-
-            System.out.println(chest.getChestLocation());
-
             chestList.add(chest);
+
+            plugin.getLogger().info(
+                    "Loading chest: " + chest.getId() + " " +
+                            "Rarity: " + chest.getType() + " " +
+                            "Items: " + Arrays.toString(chest.getItems().toArray())
+            );
         }
     }
 }

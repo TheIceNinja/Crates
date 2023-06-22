@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.api.chest.ChestType;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.managers.ChestManager;
-import net.theiceninja.ninjaapi.ColorUtils;
-import net.theiceninja.ninjaapi.SubCommand;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utilitys.spigot.commands.SubCommand;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -18,18 +18,18 @@ public class AddChestSubCommand implements SubCommand {
     @Override
     public void execute(Player player, String[] args) {
         if (args.length <= 2) {
-            player.sendMessage(ColorUtils.color("&#E81E33אתה צריך לספק איידי וסוג."));
+            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך לספק איידי וסוג."));
             return;
         }
 
         try {
             if (chestManager.findChest(Integer.parseInt(args[1])).isPresent()) {
-                player.sendMessage(ColorUtils.color("&#E81E33יש כבר איידי כזה!"));
+                player.sendMessage(ColorUtils.colorString("&#E81E33יש כבר איידי כזה!"));
                 return;
             }
 
             if (!containsValue(args[2])) {
-                player.sendMessage(ColorUtils.color("&#E81E33זה לא חלק מ-enum!"));
+                player.sendMessage(ColorUtils.colorString("&#E81E33זה לא חלק מ-enum!"));
                 return;
             }
 
@@ -40,13 +40,13 @@ public class AddChestSubCommand implements SubCommand {
             );
 
             chestManager.getChestSetupHandler().addToSetup(player, chest);
-            player.sendMessage(ColorUtils.color(
+            player.sendMessage(ColorUtils.colorString(
                     "&bיצרת עכשיו את התיבה "
                             + args[1] + " &bעם הסוג "
                             + ChestType.valueOf(args[2].toUpperCase()).getPrefix())
             );
         } catch (NumberFormatException ex) {
-            player.sendMessage(ColorUtils.color("&#E81E33אתה צריך להקליד איידי של מספר!"));
+            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להקליד איידי של מספר!"));
         }
     }
 

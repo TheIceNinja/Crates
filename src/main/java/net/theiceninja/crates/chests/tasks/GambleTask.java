@@ -1,7 +1,7 @@
 package net.theiceninja.crates.chests.tasks;
 
 import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.ninjaapi.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -52,10 +52,10 @@ public class GambleTask extends BukkitRunnable {
             cancel();
             if (chest.getDisplayItemArmorStand() == null) return;
 
-            ItemStack item = chest.getItems().get(timeItemLength);
+            ItemStack item = chest.getItems().stream().toList().get(timeItemLength);
             if (chest.getDisplayItemArmorStand().getEquipment() == null) return;
 
-            chest.getDisplayItemArmorStand().setCustomName(ColorUtils.color(
+            chest.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
                     "&#13F338זכית ב &#F3C313" +
                             (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
                             + " &#13B3F3" + item.getAmount()
@@ -64,11 +64,11 @@ public class GambleTask extends BukkitRunnable {
             chest.getDisplayItemArmorStand().getEquipment().setHelmet(item);
             player.getInventory().addItem(item);
             player.playSound(player, Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1);
-            player.sendMessage(ColorUtils.color(
+            player.sendMessage(ColorUtils.colorString(
                     "&r\n" +
-                    "&#13F338זכית ב &#F3C313" +
-                    (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                    + " &#13B3F3" + item.getAmount())
+                            "&#13F338זכית ב &#F3C313" +
+                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
+                            + " &#13B3F3" + item.getAmount())
                     + "\n&r"
             );
 
@@ -98,8 +98,8 @@ public class GambleTask extends BukkitRunnable {
 
         player.playSound(player, Sound.BLOCK_AMETHYST_BLOCK_BREAK, 3, 1);
 
-        ItemStack item = chest.getItems().get(isFirstRound ? firstRoundTimeLength : timeItemLength);
-        chest.getDisplayItemArmorStand().setCustomName(ColorUtils.color(
+        ItemStack item = chest.getItems().stream().toList().get(isFirstRound ? firstRoundTimeLength : timeItemLength);
+        chest.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
                 "&#F3C713" +
                         (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
                         + " &#F31353" + item.getAmount()

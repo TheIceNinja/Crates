@@ -3,9 +3,9 @@ package net.theiceninja.crates.commands.subcommands;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.CratesPlugin;
 import net.theiceninja.crates.api.chest.ChestType;
-import net.theiceninja.ninjaapi.ColorUtils;
-import net.theiceninja.ninjaapi.ItemBuilder;
-import net.theiceninja.ninjaapi.SubCommand;
+import net.theiceninja.utilitys.spigot.ItemBuilder;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utilitys.spigot.commands.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -19,12 +19,12 @@ public class GiveKeySubCommand implements SubCommand {
     @Override
     public void execute(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ColorUtils.color("&#E81E33אתה צריך להקליד את הסוג של המפתח"));
+            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להקליד את הסוג של המפתח"));
             return;
         }
 
         if (!containsValue(args[1])) {
-            player.sendMessage(ColorUtils.color("&#E81E33זה לא חלק מ-enum!"));
+            player.sendMessage(ColorUtils.colorString("&#E81E33זה לא חלק מ-enum!"));
             return;
         }
 
@@ -36,7 +36,7 @@ public class GiveKeySubCommand implements SubCommand {
                         .build()
         );
 
-        player.sendMessage(ColorUtils.color("&aנוסף לך מפתח אחד לאינבנטורי שלך!"));
+        player.sendMessage(ColorUtils.colorString("&aנוסף לך מפתח אחד לאינבנטורי שלך!"));
     }
 
     @Override

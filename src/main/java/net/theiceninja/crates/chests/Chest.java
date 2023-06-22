@@ -6,7 +6,8 @@ import net.theiceninja.crates.api.chest.ChestType;
 import net.theiceninja.crates.api.chest.IChest;
 import net.theiceninja.crates.chests.managers.ChestManager;
 import net.theiceninja.crates.chests.tasks.GambleTask;
-import net.theiceninja.ninjaapi.ColorUtils;
+import net.theiceninja.utilitys.java.NumberUtils;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
@@ -16,14 +17,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Getter public class Chest implements IChest {
 
     private final int id;
-    private final ChestType chestType;
+    private final ChestType type;
     private boolean open = false;
 
     private ArmorStand displayItemArmorStand;
@@ -31,14 +30,14 @@ import java.util.UUID;
     private GambleTask gambleTask;
 
     @Setter private Location chestLocation;
-    private final List<ItemStack> items;
+    private final Set<ItemStack> items;
 
     private final ChestManager chestManager;
 
     // loading from configuration file
-    public Chest(int id, ChestType chestType, Location chestLocation, List<ItemStack> items, ChestManager chestManager) {
+    public Chest(int id, ChestType chestType, Location chestLocation, Set<ItemStack> items, ChestManager chestManager) {
         this.id = id;
-        this.chestType = chestType;
+        this.type = chestType;
         this.items = items;
         this.chestLocation = chestLocation;
         this.chestManager = chestManager;
@@ -49,9 +48,9 @@ import java.util.UUID;
     // creating the chest
     public Chest(int id, ChestType chestType, ChestManager chestManager) {
         this.id = id;
-        this.chestType = chestType;
+        this.type = chestType;
         this.chestManager = chestManager;
-        this.items = new ArrayList<>();
+        this.items = new HashSet<>();
     }
 
     public Inventory getInventory() {
@@ -61,7 +60,7 @@ import java.util.UUID;
                "דברים שאתה יכול לקבל"
        );
         for (int i = 0; i < items.size(); i++) {
-            ItemStack item = items.get(i);
+            ItemStack item = items.stream().toList().get(i);
             itemsMenu.addItem(item);
         }
 
@@ -85,7 +84,7 @@ import java.util.UUID;
 
     @Override
     public void removeItem(int index) {
-        ItemStack item = items.get(index);
+        ItemStack item = items.stream().toList().get(index);
         items.removeIf(existing -> existing.equals(item));
         if (item.getItemMeta() == null) return;
 
@@ -109,7 +108,7 @@ import java.util.UUID;
         this.displayNameArmorStand.setVisible(false);
         this.displayNameArmorStand.setInvulnerable(true);
         this.displayNameArmorStand.setCustomNameVisible(true);
-        this.displayNameArmorStand.setCustomName(ColorUtils.color("&#F3ED13⭐ " + chestType.getPrefix() + " &#F3ED13⭐"));
+        this.displayNameArmorStand.setCustomName(ColorUtils.colorString("&#F3ED13⭐ " + type.getPrefix() + " &#F3ED13⭐"));
 
         this.displayItemArmorStand = (ArmorStand) chestManager.getPlugin().getServer().getWorld(chestLocation.getWorld().getName())
                 .spawnEntity(
@@ -122,7 +121,7 @@ import java.util.UUID;
         this.displayItemArmorStand.setInvulnerable(true);
         this.displayItemArmorStand.setCustomNameVisible(false);
         this.displayItemArmorStand.setSmall(true);
-        this.displayItemArmorStand.setCustomName(ColorUtils.color("&r"));
+        this.displayItemArmorStand.setCustomName(ColorUtils.colorString("&r"));
         this.displayItemArmorStand.setRotation(-80, 0);
     }
 
@@ -161,13 +160,13 @@ import java.util.UUID;
         ItemStack item = player.getInventory().getItemInMainHand();
         item.setAmount(item.getAmount() - 1);
         gamble(player);
-        player.sendMessage(ColorUtils.color("&aפותח לך את התיבה!"));
+        player.sendMessage(ColorUtils.colorString("&aפותח לך את התיבה!"));
     }
 
     @Override
     public void cancel(@NotNull Player player, @NotNull String errorMessage) {
         player.setVelocity(player.getLocation().getDirection().multiply(-0.5));
-        player.sendMessage(ColorUtils.color(errorMessage));
+        player.sendMessage(ColorUtils.colorString(errorMessage));
         player.playSound(player, Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);
     }
 
@@ -183,7 +182,7 @@ import java.util.UUID;
 
     @Override
     public void gamble(@NotNull Player player) {
-        int randomNumber = (int) randomizer(-1, items.size());
+        int randomNumber = (int) NumberUtils.randomizer(-1, items.size());
         if (this.gambleTask != null) this.gambleTask.cancel();
 
         this.gambleTask = new GambleTask(
@@ -193,10 +192,6 @@ import java.util.UUID;
                 this
         );
         this.gambleTask.runTaskTimer(chestManager.getPlugin(), 0, 16);
-    }
-
-    private double randomizer(int a, int b) {
-        return (double) b + (Math.random() * (a - b + 1));
     }
 
     public void resetDisplayItemArmorStand() {
