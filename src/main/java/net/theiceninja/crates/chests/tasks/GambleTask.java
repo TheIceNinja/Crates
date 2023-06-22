@@ -75,6 +75,7 @@ public class GambleTask extends BukkitRunnable {
             Plugin plugin = chest.getChestManager().getPlugin();
             AtomicInteger timeLeftToSpin = new AtomicInteger(16);
             AtomicInteger yaw = new AtomicInteger();
+
             plugin.getServer().getScheduler().runTaskTimer(plugin, task -> {
                 if (chest.getDisplayItemArmorStand().getEquipment() == null) task.cancel();
 

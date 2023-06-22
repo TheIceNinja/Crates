@@ -52,6 +52,7 @@ public class ChestManager implements IChestManager {
 
     @Override
     public boolean isChest(Block block) {
+        if (chestList.isEmpty()) return false;
         return chestList.stream().anyMatch(chest -> chest.getChestLocation().getBlock().equals(block));
     }
 

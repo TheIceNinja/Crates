@@ -3,6 +3,8 @@ package net.theiceninja.crates.chests.setup.listeners;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.setup.ChestSetupHandler;
+import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.TextColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +20,10 @@ public class BlockPlaceListener implements Listener {
         if (!chestSetupHandler.inSetup(event.getPlayer())) return;
         if (event.getBlock().getType() != Material.CHEST) {
             event.setBuild(false);
+            event.getPlayer().sendMessage(ColorUtils.colorChat(
+                    TextColor.ERROR,
+                    "אתה צריך להניח רק תיבות שניתנו לך."
+            ));
             return;
         }
 
