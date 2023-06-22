@@ -19,14 +19,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-@Getter public class Chest implements IChest {
+@Getter
+public class Chest implements IChest {
 
     private final int id;
     private final ChestType type;
     private boolean open = false;
 
-    private ArmorStand displayItemArmorStand;
-    private ArmorStand displayNameArmorStand;
+    private ArmorStand
+            displayItemArmorStand,
+            displayNameArmorStand;
     private GambleTask gambleTask;
 
     @Setter private Location chestLocation;
@@ -54,11 +56,11 @@ import java.util.*;
     }
 
     public Inventory getInventory() {
-       Inventory itemsMenu = chestManager.getPlugin().getServer().createInventory(
-               null,
-               27,
-               "דברים שאתה יכול לקבל"
-       );
+        Inventory itemsMenu = chestManager.getPlugin().getServer().createInventory(
+                null,
+                27,
+                "דברים שאתה יכול לקבל"
+        );
         for (int i = 0; i < items.size(); i++) {
             ItemStack item = items.stream().toList().get(i);
             itemsMenu.addItem(item);
@@ -98,31 +100,37 @@ import java.util.*;
     private void setupArmorStands() {
         if (chestLocation.getWorld() == null) return;
 
-        this.displayNameArmorStand = (ArmorStand) chestManager.getPlugin().getServer().getWorld(chestLocation.getWorld().getName())
-                .spawnEntity(
-                        chestLocation.add(0.43, -0.9, 0.5),
-                        EntityType.ARMOR_STAND
-                );
-        this.displayNameArmorStand.setGravity(false);
-        this.displayNameArmorStand.setArms(false);
-        this.displayNameArmorStand.setVisible(false);
-        this.displayNameArmorStand.setInvulnerable(true);
+        this.displayNameArmorStand = applyArmorStandProperties(
+                chestLocation.add(0.43, -0.9, 0.5),
+                "&#F3ED13⭐ " + type.getPrefix() + " &#F3ED13⭐"
+        );
         this.displayNameArmorStand.setCustomNameVisible(true);
-        this.displayNameArmorStand.setCustomName(ColorUtils.colorString("&#F3ED13⭐ " + type.getPrefix() + " &#F3ED13⭐"));
 
-        this.displayItemArmorStand = (ArmorStand) chestManager.getPlugin().getServer().getWorld(chestLocation.getWorld().getName())
-                .spawnEntity(
-                        chestLocation.add(0.1, 1.8, -0),
-                        EntityType.ARMOR_STAND
-                );
-        this.displayItemArmorStand.setGravity(false);
-        this.displayItemArmorStand.setArms(false);
-        this.displayItemArmorStand.setVisible(false);
-        this.displayItemArmorStand.setInvulnerable(true);
+        this.displayItemArmorStand = applyArmorStandProperties(
+                chestLocation.add(0.1, 1.8, 0),
+                "&r"
+        );
         this.displayItemArmorStand.setCustomNameVisible(false);
         this.displayItemArmorStand.setSmall(true);
-        this.displayItemArmorStand.setCustomName(ColorUtils.colorString("&r"));
         this.displayItemArmorStand.setRotation(-80, 0);
+    }
+
+    private ArmorStand applyArmorStandProperties(@NotNull Location spawnLocation, @NotNull String displayName) {
+        ArmorStand armorStand = (ArmorStand) chestManager
+                .getPlugin()
+                .getServer()
+                .getWorld(spawnLocation.getWorld().getName())
+                .spawnEntity(
+                        spawnLocation,
+                        EntityType.ARMOR_STAND
+                );
+
+        armorStand.setGravity(false);
+        armorStand.setArms(false);
+        armorStand.setVisible(false);
+        armorStand.setInvulnerable(true);
+        armorStand.setCustomName(ColorUtils.colorString(displayName));
+        return armorStand;
     }
 
     @Override
@@ -182,7 +190,7 @@ import java.util.*;
 
     @Override
     public void gamble(@NotNull Player player) {
-        int randomNumber = (int) NumberUtils.randomizer(-1, items.size());
+        int randomNumber = (int) NumberUtils.randomizer(0, items.size() - 1);
         if (this.gambleTask != null) this.gambleTask.cancel();
 
         this.gambleTask = new GambleTask(
