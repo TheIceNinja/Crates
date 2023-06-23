@@ -16,6 +16,7 @@ import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -33,7 +34,7 @@ public class CrateManager implements ICrateManager {
         this.plugin = plugin;
         this.cratesFile = new ConfigurationFile(plugin, "chests");
         this.crateSetupHandler = new CrateSetupHandler(this);
-        loadChests();
+        loadCrates();
 
         plugin.getServer().getPluginManager().registerEvents(new CrateClickListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new PlayerInventoryClickListener(), plugin);
@@ -41,24 +42,24 @@ public class CrateManager implements ICrateManager {
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
     }
 
-    public Crate getChest(Block block) {
+    public Crate getCrate(@NotNull Block block) {
         return crateList.stream().filter(chest -> chest.getChestLocation().getBlock().equals(block)).iterator().next();
     }
 
-    public Optional<Crate> findChest(int id) {
+    public Optional<Crate> findCrate(int id) {
         if (crateList.isEmpty()) return Optional.empty();
 
         return crateList.stream().filter(existing -> existing.getId() == id).findAny();
     }
 
     @Override
-    public boolean isChest(Block block) {
+    public boolean isCrate(@NotNull Block block) {
         if (crateList.isEmpty()) return false;
         return crateList.stream().anyMatch(chest -> chest.getChestLocation().getBlock().equals(block));
     }
 
     @Override
-    public void saveChest(ICrate iChest) {
+    public void saveCrate(ICrate iChest) {
         Crate chest = (Crate) iChest;
         cratesFile.get().set("chests." + chest.getId() + ".id", chest.getId());
         cratesFile.get().set("chests." + chest.getId() + ".type", chest.getType().toString());
@@ -72,7 +73,7 @@ public class CrateManager implements ICrateManager {
     }
 
     @Override
-    public void deleteChest(ICrate iChest) {
+    public void deleteCrate(ICrate iChest) {
         Crate chest = (Crate) iChest;
         chest.delete();
         crateList.removeIf(existing -> existing.equals(chest));
@@ -82,7 +83,7 @@ public class CrateManager implements ICrateManager {
     }
 
     @Override
-    public void loadChests() {
+    public void loadCrates() {
         if (cratesFile.get().getConfigurationSection("chests") == null) return;
 
         for (String chestID : cratesFile.get().getConfigurationSection("chests").getKeys(false)) {

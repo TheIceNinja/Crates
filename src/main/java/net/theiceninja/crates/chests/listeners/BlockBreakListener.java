@@ -13,7 +13,7 @@ public class BlockBreakListener implements Listener {
 
     @EventHandler
     private void onBreak(BlockBreakEvent event) {
-        if (crateManager.isChest(event.getBlock()))
+        if (crateManager.isCrate(event.getBlock()))
             event.setCancelled(true);
     }
 }

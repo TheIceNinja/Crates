@@ -32,7 +32,7 @@ public class InteractListener implements Listener {
                 return;
             }
 
-            crateSetupHandler.getCrateManager().saveChest(chest);
+            crateSetupHandler.getCrateManager().saveCrate(chest);
             chest.reload();
 
             crateSetupHandler.removeFromSetup(event.getPlayer());

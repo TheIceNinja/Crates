@@ -32,7 +32,7 @@ public class AddCrateSubCommand implements SubCommand {
             return;
         }
 
-        if (crateManager.findChest(Integer.parseInt(args[1])).isPresent()) {
+        if (crateManager.findCrate(Integer.parseInt(args[1])).isPresent()) {
             player.sendMessage(ColorUtils.colorString("&#E81E33יש כבר איידי כזה!"));
             return;
         }

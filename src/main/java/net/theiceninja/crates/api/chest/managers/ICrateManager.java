@@ -5,10 +5,10 @@ import org.bukkit.block.Block;
 
 public interface ICrateManager {
 
-    boolean isChest(Block block);
+    boolean isCrate(Block block);
 
-    void saveChest(ICrate iCrate);
-    void deleteChest(ICrate iCrate);
-    void loadChests();
+    void saveCrate(ICrate iCrate);
+    void deleteCrate(ICrate iCrate);
+    void loadCrates();
 
 }
