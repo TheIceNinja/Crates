@@ -21,7 +21,7 @@ public class CratesPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (chestManager.getChestFile().get().getConfigurationSection("chests") == null) return;
+        if (chestManager.getChestList().isEmpty()) return;
 
         this.chestManager.getChestList().forEach(Chest::destroyArmorStand);
     }
