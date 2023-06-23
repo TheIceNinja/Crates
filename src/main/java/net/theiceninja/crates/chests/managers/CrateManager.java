@@ -32,7 +32,7 @@ public class CrateManager implements ICrateManager {
 
     public CrateManager(CratesPlugin plugin) {
         this.plugin = plugin;
-        this.cratesFile = new ConfigurationFile(plugin, "chests");
+        this.cratesFile = new ConfigurationFile(plugin, "crates");
         this.crateSetupHandler = new CrateSetupHandler(this);
         loadCrates();
 
