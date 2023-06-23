@@ -202,7 +202,8 @@ public class Chest implements IChest {
         this.gambleTask.runTaskTimer(chestManager.getPlugin(), 0, 16);
     }
 
-    public void resetDisplayItemArmorStand() {
+    @Override
+    public void reset() {
         this.displayItemArmorStand.setCustomNameVisible(false);
         if (this.displayItemArmorStand.getEquipment() == null) return;
 

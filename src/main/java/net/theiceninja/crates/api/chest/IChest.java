@@ -18,5 +18,6 @@ public interface IChest {
     void setOpen(boolean open);
 
     void gamble(@NotNull Player player);
+    void reset();
 
 }

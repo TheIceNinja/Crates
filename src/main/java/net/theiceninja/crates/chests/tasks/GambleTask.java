@@ -39,7 +39,7 @@ public class GambleTask extends BukkitRunnable {
 
         if (player == null) {
             cancel();
-            chest.resetDisplayItemArmorStand();
+            chest.reset();
             return;
         }
 
@@ -83,7 +83,7 @@ public class GambleTask extends BukkitRunnable {
                 yaw.addAndGet(30);
                 if (timeLeftToSpin.get() <= 0) {
                     task.cancel();
-                    chest.resetDisplayItemArmorStand();
+                    chest.reset();
                     return;
                 }
 
