@@ -175,10 +175,10 @@ public class Crate implements ICrate {
     }
 
     @Override
-    public void cancelClick(@NotNull Player player, @NotNull String errorMessage) {
+    public void cancelClick(@NotNull Player player, @NotNull String reason) {
         player.setVelocity(player.getLocation().getDirection().multiply(-0.5));
-        player.sendMessage(ColorUtils.colorString(errorMessage));
         player.playSound(player, Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);
+        player.sendMessage(ColorUtils.colorString(reason));
     }
 
     @Override

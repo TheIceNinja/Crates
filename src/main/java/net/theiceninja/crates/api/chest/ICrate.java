@@ -13,7 +13,7 @@ public interface ICrate {
     void delete();
 
     void open(@NotNull Player player);
-    void cancelClick(@NotNull Player player, @NotNull String errorMessage);
+    void cancelClick(@NotNull Player player, @NotNull String reason);
     boolean isOpen();
     void setOpen(boolean open);
 
