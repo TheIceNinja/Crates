@@ -1,8 +1,8 @@
 package net.theiceninja.crates.chests.setup.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.setup.ChestSetupHandler;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,11 +11,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 @RequiredArgsConstructor
 public class InteractListener implements Listener {
 
-    private final ChestSetupHandler chestSetupHandler;
+    private final CrateSetupHandler crateSetupHandler;
 
     @EventHandler
     private void onInteract(PlayerInteractEvent event) {
-        if (!chestSetupHandler.inSetup(event.getPlayer())) return;
+        if (!crateSetupHandler.inSetup(event.getPlayer())) return;
         if (!event.hasItem()) return;
         if (event.getItem() == null) return;
         if (!event.getItem().hasItemMeta()) return;
@@ -23,19 +23,19 @@ public class InteractListener implements Listener {
 
         String itemName = event.getItem().getItemMeta().getDisplayName();
         if (itemName.equals(ColorUtils.colorString("&cיציאה"))) {
-            chestSetupHandler.getChestManager().getChestFile().reloadConfig();
-            chestSetupHandler.removeFromSetup(event.getPlayer());
+            crateSetupHandler.getCrateManager().getCratesFile().reloadConfig();
+            crateSetupHandler.removeFromSetup(event.getPlayer());
         } else if (itemName.equals(ColorUtils.colorString("&aאישור"))) {
-            Chest chest = chestSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
+            Crate chest = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
             if (chest.getChestLocation() == null) {
                 event.getPlayer().sendMessage(ColorUtils.colorString("&cלא שמת לו מיקום."));
                 return;
             }
 
-            chestSetupHandler.getChestManager().saveChest(chest);
+            crateSetupHandler.getCrateManager().saveChest(chest);
             chest.reload();
 
-            chestSetupHandler.removeFromSetup(event.getPlayer());
+            crateSetupHandler.removeFromSetup(event.getPlayer());
         }
     }
 }

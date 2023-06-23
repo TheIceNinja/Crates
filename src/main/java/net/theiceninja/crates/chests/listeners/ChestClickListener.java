@@ -1,8 +1,8 @@
 package net.theiceninja.crates.chests.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
@@ -14,16 +14,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 @RequiredArgsConstructor
 public class ChestClickListener implements Listener {
 
-    private final ChestManager chestManager;
+    private final CrateManager crateManager;
 
     @EventHandler
     private void onInteract(PlayerInteractEvent event) {
         if (event.getClickedBlock() == null) return;
 
         Block block = event.getClickedBlock();
-        if (!chestManager.isChest(block)) return;
+        if (!crateManager.isChest(block)) return;
 
-        Chest chest = chestManager.getChest(block);
+        Crate chest = crateManager.getChest(block);
         if (event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             event.getPlayer().openInventory(chest.getInventory());
         } else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {

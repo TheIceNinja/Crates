@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ChestType {
+public enum CrateType {
 
     RARE("&#17F73C&lRare"),
     EPIC("&#C117F7&lEpic");

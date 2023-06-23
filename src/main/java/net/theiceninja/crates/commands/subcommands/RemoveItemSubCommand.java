@@ -1,8 +1,8 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RemoveItemSubCommand implements SubCommand {
 
-    private final ChestManager chestManager;
+    private final CrateManager crateManager;
 
     @Override
     public void execute(Player player, String[] args) {
@@ -31,7 +31,7 @@ public class RemoveItemSubCommand implements SubCommand {
             return;
         }
 
-        Optional<Chest> optionalChest = chestManager.findChest(Integer.parseInt(args[1]));
+        Optional<Crate> optionalChest = crateManager.findChest(Integer.parseInt(args[1]));
         if (optionalChest.isEmpty()) {
             player.sendMessage(ColorUtils.colorString("&#E81E33התיבה לא נמצאה, נסה עם איידי שונה."));
             return;

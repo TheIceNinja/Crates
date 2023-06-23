@@ -1,8 +1,8 @@
 package net.theiceninja.crates.chests.setup.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.setup.ChestSetupHandler;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
 import org.bukkit.Material;
@@ -13,11 +13,11 @@ import org.bukkit.event.block.BlockPlaceEvent;
 @RequiredArgsConstructor
 public class BlockPlaceListener implements Listener {
 
-    private final ChestSetupHandler chestSetupHandler;
+    private final CrateSetupHandler crateSetupHandler;
 
     @EventHandler
     private void onBlockPlace(BlockPlaceEvent event) {
-        if (!chestSetupHandler.inSetup(event.getPlayer())) return;
+        if (!crateSetupHandler.inSetup(event.getPlayer())) return;
         if (event.getBlock().getType() != Material.CHEST) {
             event.setBuild(false);
             event.getPlayer().sendMessage(ColorUtils.colorChat(
@@ -27,7 +27,7 @@ public class BlockPlaceListener implements Listener {
             return;
         }
 
-        Chest chest = chestSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
+        Crate chest = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
         chest.setChestLocation(event.getBlock().getLocation());
     }
 }

@@ -1,10 +1,10 @@
 package net.theiceninja.crates.chests.setup;
 
 import lombok.Getter;
-import net.theiceninja.crates.api.chest.IChest;
+import net.theiceninja.crates.api.chest.ICrate;
 import net.theiceninja.crates.api.chest.ISetupHandler;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.crates.chests.setup.listeners.BlockPlaceListener;
 import net.theiceninja.crates.chests.setup.listeners.DropItemsListener;
 import net.theiceninja.crates.chests.setup.listeners.InteractListener;
@@ -20,15 +20,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ChestSetupHandler implements ISetupHandler {
+public class CrateSetupHandler implements ISetupHandler {
 
-    @Getter private final Map<UUID, Chest> setup;
+    @Getter private final Map<UUID, Crate> setup;
 
-    @Getter private final ChestManager chestManager;
+    @Getter private final CrateManager crateManager;
     private final PlayerRollback rollbackManager;
 
-    public ChestSetupHandler(ChestManager chestManager) {
-        this.chestManager = chestManager;
+    public CrateSetupHandler(CrateManager chestManager) {
+        this.crateManager = chestManager;
         this.setup = new HashMap<>();
         this.rollbackManager = new PlayerRollback();
 
@@ -39,8 +39,8 @@ public class ChestSetupHandler implements ISetupHandler {
     }
 
     @Override
-    public void addToSetup(@NotNull Player player, @NotNull IChest iChest) {
-        Chest chest = (Chest) iChest;
+    public void addToSetup(@NotNull Player player, @NotNull ICrate iChest) {
+        Crate chest = (Crate) iChest;
         setup.put(player.getUniqueId(), chest);
         rollbackManager.save(player);
 

@@ -1,6 +1,6 @@
 package net.theiceninja.crates.commands;
 
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.crates.commands.subcommands.*;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
@@ -12,18 +12,18 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
-@CommandInfo(name = "crates", permission = "crates.admin", subCommandNames = {"deletechest", "addchest", "chestlist", "additem", "givekey", "removeitem"})
+@CommandInfo(name = "crates", permission = "crates.admin", subCommandNames = {"delete", "add", "list", "additem", "givekey", "removeitem"})
 public class CratesCommand extends PluginCommand {
 
     private final Set<SubCommand> subCommands = new HashSet<>();
 
-    public CratesCommand(ChestManager chestManager) {
-        subCommands.add(new GiveKeySubCommand(chestManager.getPlugin()));
-        subCommands.add(new AddItemSubCommand(chestManager));
-        subCommands.add(new DeleteChestSubCommand(chestManager));
-        subCommands.add(new RemoveItemSubCommand(chestManager));
-        subCommands.add(new ListSubCommand(chestManager));
-        subCommands.add(new AddChestSubCommand(chestManager));
+    public CratesCommand(CrateManager crateManager) {
+        subCommands.add(new GiveKeySubCommand(crateManager.getPlugin()));
+        subCommands.add(new AddItemSubCommand(crateManager));
+        subCommands.add(new DeleteCrateSubCommand(crateManager));
+        subCommands.add(new RemoveItemSubCommand(crateManager));
+        subCommands.add(new ListSubCommand(crateManager));
+        subCommands.add(new AddCrateSubCommand(crateManager));
         subCommands.add(new HelpSubCommand(subCommands, getCommandInfo()));
     }
 
@@ -32,7 +32,7 @@ public class CratesCommand extends PluginCommand {
         if (args.length == 0) {
             player.sendMessage(ColorUtils.colorChat(
                     TextColor.WRONG_USAGE,
-                    "Usage: /crates <deletechest|addchest|listchest|additem|givekey|removeitem>"
+                    "Usage: /crates <delete|add|list|additem|givekey|removeitem>"
             ));
             return;
         }
@@ -41,7 +41,7 @@ public class CratesCommand extends PluginCommand {
         if (optionalSubCommand.isEmpty()) {
             player.sendMessage(ColorUtils.colorChat(
                     TextColor.WRONG_USAGE,
-                    "Usage: /crates <deletechest|addchest|listchest|additem|givekey|removeitem>"
+                    "Usage: /crates <delete|add|list|additem|givekey|removeitem>"
             ));
             return;
         }

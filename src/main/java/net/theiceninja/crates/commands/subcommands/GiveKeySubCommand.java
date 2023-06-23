@@ -2,7 +2,7 @@ package net.theiceninja.crates.commands.subcommands;
 
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.CratesPlugin;
-import net.theiceninja.crates.api.chest.ChestType;
+import net.theiceninja.crates.api.chest.CrateType;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.commands.SubCommand;
@@ -28,7 +28,7 @@ public class GiveKeySubCommand implements SubCommand {
             return;
         }
 
-        ChestType chestType = ChestType.valueOf(args[1].toUpperCase());
+        CrateType chestType = CrateType.valueOf(args[1].toUpperCase());
         player.getInventory().addItem(
                 new ItemBuilder(Material.TRIPWIRE_HOOK)
                         .setDisplayName("&#F3D813מפתח " + chestType.getPrefix())
@@ -50,8 +50,8 @@ public class GiveKeySubCommand implements SubCommand {
     }
 
     private boolean containsValue(String name) {
-        for (int i = 0; i < ChestType.values().length; i++) {
-            if (Arrays.stream(ChestType.values()).toList().get(i).name().equals(name.toUpperCase())) return true;
+        for (int i = 0; i < CrateType.values().length; i++) {
+            if (Arrays.stream(CrateType.values()).toList().get(i).name().equals(name.toUpperCase())) return true;
         }
 
         return false;

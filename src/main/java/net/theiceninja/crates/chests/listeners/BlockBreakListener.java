@@ -1,7 +1,7 @@
 package net.theiceninja.crates.chests.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -9,11 +9,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 @RequiredArgsConstructor
 public class BlockBreakListener implements Listener {
 
-    private final ChestManager chestManager;
+    private final CrateManager crateManager;
 
     @EventHandler
     private void onBreak(BlockBreakEvent event) {
-        if (chestManager.isChest(event.getBlock()))
+        if (crateManager.isChest(event.getBlock()))
             event.setCancelled(true);
     }
 }

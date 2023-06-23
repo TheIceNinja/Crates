@@ -2,9 +2,9 @@ package net.theiceninja.crates.chests;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.theiceninja.crates.api.chest.ChestType;
-import net.theiceninja.crates.api.chest.IChest;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.api.chest.CrateType;
+import net.theiceninja.crates.api.chest.ICrate;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.crates.chests.tasks.GambleTask;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
@@ -21,10 +21,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 @Getter
-public class Chest implements IChest {
+public class Crate implements ICrate {
 
     private final int id;
-    private final ChestType type;
+    private final CrateType type;
     private boolean open = false;
 
     private ArmorStand
@@ -35,29 +35,29 @@ public class Chest implements IChest {
     @Setter private Location chestLocation;
     private final Set<ItemStack> items;
 
-    private final ChestManager chestManager;
+    private final CrateManager crateManager;
 
     // loading from configuration file
-    public Chest(int id, ChestType chestType, Location chestLocation, Set<ItemStack> items, ChestManager chestManager) {
+    public Crate(int id, CrateType crateType, Location chestLocation, Set<ItemStack> items, CrateManager crateManager) {
         this.id = id;
-        this.type = chestType;
+        this.type = crateType;
         this.items = items;
         this.chestLocation = chestLocation;
-        this.chestManager = chestManager;
+        this.crateManager = crateManager;
 
         setupArmorStands();
     }
 
     // creating the chest
-    public Chest(int id, ChestType chestType, ChestManager chestManager) {
+    public Crate(int id, CrateType chestType, CrateManager crateManager) {
         this.id = id;
         this.type = chestType;
-        this.chestManager = chestManager;
+        this.crateManager = crateManager;
         this.items = new HashSet<>();
     }
 
     public Inventory getInventory() {
-        Inventory itemsMenu = chestManager.getPlugin().getServer().createInventory(
+        Inventory itemsMenu = crateManager.getPlugin().getServer().createInventory(
                 null,
                 27,
                 "דברים שאתה יכול לקבל"
@@ -79,8 +79,8 @@ public class Chest implements IChest {
             key = UUID.randomUUID().toString();
         }
 
-        chestManager.getChestFile().get().set("chests." + id + ".items." + key, item);
-        chestManager.getChestFile().save();
+        crateManager.getCratesFile().get().set("chests." + id + ".items." + key, item);
+        crateManager.getCratesFile().save();
 
         items.add(item);
     }
@@ -91,11 +91,11 @@ public class Chest implements IChest {
         items.removeIf(existing -> existing.equals(item));
         if (item.getItemMeta() == null) return;
 
-        chestManager.getChestFile().get().set(
+        crateManager.getCratesFile().get().set(
                 "chests." + id + ".items." + item.getItemMeta().getDisplayName()
                 , null
         );
-        chestManager.getChestFile().save();
+        crateManager.getCratesFile().save();
     }
 
     private void setupArmorStands() {
@@ -117,7 +117,7 @@ public class Chest implements IChest {
     }
 
     private ArmorStand applyArmorStandProperties(@NotNull Location spawnLocation, @NotNull String displayName) {
-        ArmorStand armorStand = (ArmorStand) chestManager
+        ArmorStand armorStand = (ArmorStand) crateManager
                 .getPlugin()
                 .getServer()
                 .getWorld(spawnLocation.getWorld().getName())
@@ -202,7 +202,7 @@ public class Chest implements IChest {
                 items.size() - 1,
                 this
         );
-        this.gambleTask.runTaskTimer(chestManager.getPlugin(), 0, 16);
+        this.gambleTask.runTaskTimer(crateManager.getPlugin(), 0, 16);
     }
 
     @Override

@@ -1,9 +1,9 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.api.chest.ChestType;
-import net.theiceninja.crates.chests.Chest;
-import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.crates.api.chest.CrateType;
+import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
@@ -13,9 +13,9 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 @RequiredArgsConstructor
-public class AddChestSubCommand implements SubCommand {
+public class AddCrateSubCommand implements SubCommand {
 
-    private final ChestManager chestManager;
+    private final CrateManager crateManager;
 
     @Override
     public void execute(Player player, String[] args) {
@@ -32,7 +32,7 @@ public class AddChestSubCommand implements SubCommand {
             return;
         }
 
-        if (chestManager.findChest(Integer.parseInt(args[1])).isPresent()) {
+        if (crateManager.findChest(Integer.parseInt(args[1])).isPresent()) {
             player.sendMessage(ColorUtils.colorString("&#E81E33יש כבר איידי כזה!"));
             return;
         }
@@ -42,23 +42,23 @@ public class AddChestSubCommand implements SubCommand {
             return;
         }
 
-        Chest chest = new Chest(
+        Crate chest = new Crate(
                 Integer.parseInt(args[1]),
-                ChestType.valueOf(args[2].toUpperCase()),
-                chestManager
+                CrateType.valueOf(args[2].toUpperCase()),
+                crateManager
         );
 
-        chestManager.getChestSetupHandler().addToSetup(player, chest);
+        crateManager.getCrateSetupHandler().addToSetup(player, chest);
         player.sendMessage(ColorUtils.colorString(
                 "&bיצרת עכשיו את התיבה "
                         + args[1] + " &bעם הסוג "
-                        + ChestType.valueOf(args[2].toUpperCase()).getPrefix())
+                        + CrateType.valueOf(args[2].toUpperCase()).getPrefix())
         );
     }
 
     @Override
     public String getName() {
-        return "addchest";
+        return "add";
     }
 
     @Override
@@ -67,8 +67,8 @@ public class AddChestSubCommand implements SubCommand {
     }
 
     private boolean containsValue(String name) {
-        for (int i = 0; i < ChestType.values().length; i++) {
-            if (Arrays.stream(ChestType.values()).toList().get(i).name().equals(name.toUpperCase()))
+        for (int i = 0; i < CrateType.values().length; i++) {
+            if (Arrays.stream(CrateType.values()).toList().get(i).name().equals(name.toUpperCase()))
                 return true;
         }
 

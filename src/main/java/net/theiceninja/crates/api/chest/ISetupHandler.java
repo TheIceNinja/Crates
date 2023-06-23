@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface ISetupHandler {
 
-    void addToSetup(@NotNull Player player, final @NotNull IChest chest);
+    void addToSetup(@NotNull Player player, final @NotNull ICrate iCrate);
     void removeFromSetup(@NotNull Player player);
     boolean inSetup(@NotNull Player player);
 

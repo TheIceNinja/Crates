@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public interface IChest {
+public interface ICrate {
 
     void reload();
     void addItem(@NotNull ItemStack item);
