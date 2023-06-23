@@ -3,6 +3,7 @@ package net.theiceninja.crates.commands.subcommands;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.chests.Chest;
 import net.theiceninja.crates.chests.managers.ChestManager;
+import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
 import net.theiceninja.utilitys.spigot.commands.SubCommand;
@@ -22,22 +23,21 @@ public class RemoveItemSubCommand implements SubCommand {
             return;
         }
 
-        int chestIndex, itemIndex;
-        try {
-            chestIndex = Integer.parseInt(args[1]);
-            itemIndex = Integer.parseInt(args[2]);
-        } catch (NumberFormatException ex) {
-            player.sendMessage(ColorUtils.colorString("&#E81E33האיידי לא נמצא"));
+        if (!NumberUtils.isNumeric(args[1]) || !NumberUtils.isNumeric(args[2])) {
+            player.sendMessage(ColorUtils.colorChat(
+                    TextColor.ERROR,
+                    "ארגיומנט זה לא מספר, אנא כתוב משהו שהוא מספר."
+            ));
             return;
         }
 
-        Optional<Chest> optionalChest = chestManager.findChest(chestIndex);
+        Optional<Chest> optionalChest = chestManager.findChest(Integer.parseInt(args[1]));
         if (optionalChest.isEmpty()) {
             player.sendMessage(ColorUtils.colorString("&#E81E33התיבה לא נמצאה, נסה עם איידי שונה."));
             return;
         }
 
-        optionalChest.get().removeItem(itemIndex);
+        optionalChest.get().removeItem(Integer.parseInt(args[2]));
         player.sendMessage(ColorUtils.colorChat(TextColor.SUCCESS, "נמחק האייטם!"));
     }
 
