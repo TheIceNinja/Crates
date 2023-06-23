@@ -86,31 +86,31 @@ public class CrateManager implements ICrateManager {
     public void loadCrates() {
         if (cratesFile.get().getConfigurationSection("chests") == null) return;
 
-        for (String chestID : cratesFile.get().getConfigurationSection("chests").getKeys(false)) {
-            final ConfigurationSection chestSection = cratesFile.get().getConfigurationSection("chests." + chestID);
-            if (chestSection == null) break;
+        for (String crateID : cratesFile.get().getConfigurationSection("chests").getKeys(false)) {
+            final ConfigurationSection crateSection = cratesFile.get().getConfigurationSection("chests." + crateID);
+            if (crateSection == null) break;
 
             final Set<ItemStack> items = new HashSet<>();
-            if (chestSection.getConfigurationSection("items") != null)
-                chestSection.getConfigurationSection("items").getKeys(false).forEach(item -> {
-                    ItemStack itemStack = chestSection.getItemStack("items." + item);
+            if (crateSection.getConfigurationSection("items") != null)
+                crateSection.getConfigurationSection("items").getKeys(false).forEach(item -> {
+                    ItemStack itemStack = crateSection.getItemStack("items." + item);
 
                     items.add(itemStack);
                 });
 
-            Crate chest = new Crate(
-                    chestSection.getInt("id"),
-                    CrateType.valueOf(chestSection.getString("type")),
-                    LocationUtility.readLocation(chestSection.getConfigurationSection("location")),
+            Crate crate = new Crate(
+                    crateSection.getInt("id"),
+                    CrateType.valueOf(crateSection.getString("type")),
+                    LocationUtility.readLocation(crateSection.getConfigurationSection("location")),
                     items,
                     this
             );
-            crateList.add(chest);
+            crateList.add(crate);
 
             plugin.getLogger().info(
-                    "Loading chest: " + chest.getId() + " " +
-                            "Rarity: " + chest.getType() + " " +
-                            "Items: " + Arrays.toString(chest.getItems().toArray())
+                    "Loading crate: " + crate.getId() + " " +
+                            "Rarity: " + crate.getType() + " " +
+                            "Items: " + Arrays.toString(crate.getItems().toArray())
             );
         }
     }
