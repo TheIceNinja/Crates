@@ -62,7 +62,8 @@ public class AddChestSubCommand implements SubCommand {
 
     private boolean containsValue(String name) {
         for (int i = 0; i < ChestType.values().length; i++) {
-            if (Arrays.stream(ChestType.values()).toList().get(i).name().equals(name.toUpperCase())) return true;
+            if (Arrays.stream(ChestType.values()).toList().get(i).name().equals(name.toUpperCase()))
+                return true;
         }
 
         return false;
