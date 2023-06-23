@@ -28,6 +28,6 @@ public class BlockPlaceListener implements Listener {
         }
 
         Crate chest = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
-        chest.setChestLocation(event.getBlock().getLocation());
+        chest.setLocation(event.getBlock().getLocation());
     }
 }

@@ -20,9 +20,9 @@ public class ListSubCommand implements SubCommand {
 
         crateManager.getCrateList().forEach(chest -> player.sendMessage(ColorUtils.colorString(
                 "&#F3D113" + chest.getId()
-                  + "\n&#13BAF3" + chest.getChestLocation().getX() +
-                    "&6, &#13BAF3" + chest.getChestLocation().getY() +
-                    "&6, &#13BAF3" + chest.getChestLocation().getZ()
+                  + "\n&#13BAF3" + chest.getLocation().getX() +
+                    "&6, &#13BAF3" + chest.getLocation().getY() +
+                    "&6, &#13BAF3" + chest.getLocation().getZ()
         )));
     }
 

@@ -43,7 +43,7 @@ public class CrateManager implements ICrateManager {
     }
 
     public Crate getCrate(@NotNull Block block) {
-        return crateList.stream().filter(chest -> chest.getChestLocation().getBlock().equals(block)).iterator().next();
+        return crateList.stream().filter(crate -> crate.getLocation().getBlock().equals(block)).iterator().next();
     }
 
     public Optional<Crate> findCrate(int id) {
@@ -55,39 +55,39 @@ public class CrateManager implements ICrateManager {
     @Override
     public boolean isCrate(@NotNull Block block) {
         if (crateList.isEmpty()) return false;
-        return crateList.stream().anyMatch(chest -> chest.getChestLocation().getBlock().equals(block));
+        return crateList.stream().anyMatch(crate -> crate.getLocation().getBlock().equals(block));
     }
 
     @Override
-    public void saveCrate(ICrate iChest) {
-        Crate chest = (Crate) iChest;
-        cratesFile.get().set("chests." + chest.getId() + ".id", chest.getId());
-        cratesFile.get().set("chests." + chest.getId() + ".type", chest.getType().toString());
+    public void saveCrate(ICrate iCrate) {
+        Crate crate = (Crate) iCrate;
+        cratesFile.get().set("crates." + crate.getId() + ".id", crate.getId());
+        cratesFile.get().set("crates." + crate.getId() + ".type", crate.getType().toString());
         LocationUtility.setLocation(
-                chest.getChestLocation(),
-                cratesFile.get().createSection("chests." + chest.getId() + ".location")
+                crate.getLocation(),
+                cratesFile.get().createSection("crates." + crate.getId() + ".location")
         );
 
-        crateList.add(chest);
+        crateList.add(crate);
         cratesFile.save();
     }
 
     @Override
-    public void deleteCrate(ICrate iChest) {
-        Crate chest = (Crate) iChest;
-        chest.delete();
-        crateList.removeIf(existing -> existing.equals(chest));
-        cratesFile.get().set("chests." + chest.getId(), null);
+    public void deleteCrate(ICrate iCrate) {
+        Crate crate = (Crate) iCrate;
+        crate.delete();
+        crateList.removeIf(existing -> existing.equals(crate));
+        cratesFile.get().set("chests." + crate.getId(), null);
 
         cratesFile.save();
     }
 
     @Override
     public void loadCrates() {
-        if (cratesFile.get().getConfigurationSection("chests") == null) return;
+        if (cratesFile.get().getConfigurationSection("crates") == null) return;
 
-        for (String crateID : cratesFile.get().getConfigurationSection("chests").getKeys(false)) {
-            final ConfigurationSection crateSection = cratesFile.get().getConfigurationSection("chests." + crateID);
+        for (String crateID : cratesFile.get().getConfigurationSection("crates").getKeys(false)) {
+            final ConfigurationSection crateSection = cratesFile.get().getConfigurationSection("crates." + crateID);
             if (crateSection == null) break;
 
             final Set<ItemStack> items = new HashSet<>();

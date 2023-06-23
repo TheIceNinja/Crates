@@ -32,7 +32,7 @@ public class Crate implements ICrate {
             displayNameArmorStand;
     private GambleTask gambleTask;
 
-    @Setter private Location chestLocation;
+    @Setter private Location location;
     private final Set<ItemStack> items;
 
     private final CrateManager crateManager;
@@ -42,7 +42,7 @@ public class Crate implements ICrate {
         this.id = id;
         this.type = crateType;
         this.items = items;
-        this.chestLocation = chestLocation;
+        this.location = chestLocation;
         this.crateManager = crateManager;
 
         setupArmorStands();
@@ -99,16 +99,16 @@ public class Crate implements ICrate {
     }
 
     private void setupArmorStands() {
-        if (chestLocation.getWorld() == null) return;
+        if (location.getWorld() == null) return;
 
         this.displayNameArmorStand = applyArmorStandProperties(
-                chestLocation.add(0.43, -0.9, 0.5),
+                location.add(0.43, -0.9, 0.5),
                 "&#F3ED13⭐ " + type.getPrefix() + " &#F3ED13⭐"
         );
         this.displayNameArmorStand.setCustomNameVisible(true);
 
         this.displayItemArmorStand = applyArmorStandProperties(
-                chestLocation.add(0.1, 1.8, 0),
+                location.add(0.1, 1.8, 0),
                 "&r"
         );
         this.displayItemArmorStand.setCustomNameVisible(false);
@@ -149,7 +149,7 @@ public class Crate implements ICrate {
     @Override
     public void delete() {
         destroyArmorStand();
-        chestLocation.getBlock().setType(Material.AIR);
+        location.getBlock().setType(Material.AIR);
         items.clear();
     }
 

@@ -27,7 +27,7 @@ public class InteractListener implements Listener {
             crateSetupHandler.removeFromSetup(event.getPlayer());
         } else if (itemName.equals(ColorUtils.colorString("&aאישור"))) {
             Crate chest = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
-            if (chest.getChestLocation() == null) {
+            if (chest.getLocation() == null) {
                 event.getPlayer().sendMessage(ColorUtils.colorString("&cלא שמת לו מיקום."));
                 return;
             }
