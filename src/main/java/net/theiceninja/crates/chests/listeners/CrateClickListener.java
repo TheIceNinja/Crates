@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 @RequiredArgsConstructor
-public class ChestClickListener implements Listener {
+public class CrateClickListener implements Listener {
 
     private final CrateManager crateManager;
 

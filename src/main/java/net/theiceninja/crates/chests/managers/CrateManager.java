@@ -8,7 +8,7 @@ import net.theiceninja.crates.api.chest.managers.ICrateManager;
 import net.theiceninja.crates.chests.Crate;
 import net.theiceninja.crates.chests.listeners.BlockBreakListener;
 import net.theiceninja.crates.chests.listeners.BlockPlaceListener;
-import net.theiceninja.crates.chests.listeners.ChestClickListener;
+import net.theiceninja.crates.chests.listeners.CrateClickListener;
 import net.theiceninja.crates.chests.listeners.PlayerInventoryClickListener;
 import net.theiceninja.crates.chests.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.LocationUtility;
@@ -35,7 +35,7 @@ public class CrateManager implements ICrateManager {
         this.crateSetupHandler = new CrateSetupHandler(this);
         loadChests();
 
-        plugin.getServer().getPluginManager().registerEvents(new ChestClickListener(this), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new CrateClickListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new PlayerInventoryClickListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);

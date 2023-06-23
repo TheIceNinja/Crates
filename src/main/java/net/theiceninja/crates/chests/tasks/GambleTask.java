@@ -68,8 +68,8 @@ public class GambleTask extends BukkitRunnable {
                     "&r\n" +
                             "&#13F338זכית ב &#F3C313" +
                             (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                            + " &#13B3F3" + item.getAmount())
-                    + "\n&r"
+                            + " &#13B3F3" + item.getAmount()
+                    )
             );
 
             Plugin plugin = crate.getCrateManager().getPlugin();
