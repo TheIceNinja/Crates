@@ -40,7 +40,7 @@ public class ChestClickListener implements Listener {
             String itemName = event.getItem().getItemMeta().getDisplayName();
             if (itemName.contains(ColorUtils.colorString(chest.getType().getPrefix()))) {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.open( event.getPlayer());
+                chest.open(event.getPlayer());
             } else {
                 event.setUseInteractedBlock(Event.Result.DENY);
                 chest.cancelClick(
