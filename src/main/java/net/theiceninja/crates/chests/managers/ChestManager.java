@@ -77,8 +77,6 @@ public class ChestManager implements IChestManager {
         chestList.removeIf(existing -> existing.equals(chest));
         chestFile.get().set("chests." + chest.getId(), null);
 
-        chest.getChestLocation().getBlock().setType(Material.AIR);
-
         chestFile.save();
     }
 

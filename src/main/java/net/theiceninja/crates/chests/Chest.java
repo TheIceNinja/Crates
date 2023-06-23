@@ -9,6 +9,7 @@ import net.theiceninja.crates.chests.tasks.GambleTask;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
@@ -148,6 +149,8 @@ public class Chest implements IChest {
     @Override
     public void delete() {
         destroyArmorStand();
+        chestLocation.getBlock().setType(Material.AIR);
+        items.clear();
     }
 
     @Override
