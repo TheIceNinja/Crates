@@ -42,6 +42,7 @@ public class CrateSetupHandler implements ISetupHandler {
     public void addToSetup(@NotNull Player player, @NotNull ICrate iChest) {
         Crate chest = (Crate) iChest;
         setup.put(player.getUniqueId(), chest);
+        player.getInventory().clear();
         rollbackManager.save(player);
 
         player.setGameMode(GameMode.CREATIVE);
@@ -74,6 +75,7 @@ public class CrateSetupHandler implements ISetupHandler {
     @Override
     public void removeFromSetup(final @NotNull Player player) {
         setup.remove(player.getUniqueId());
+        player.getInventory().clear();
         rollbackManager.restore(player);
     }
 
