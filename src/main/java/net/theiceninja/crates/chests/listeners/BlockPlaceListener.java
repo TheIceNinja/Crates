@@ -14,6 +14,7 @@ public class BlockPlaceListener implements Listener {
         if (event.getItemInHand().getType() == Material.AIR) return;
         if (!event.getItemInHand().hasItemMeta()) return;
         if (!event.getItemInHand().getItemMeta().hasDisplayName()) return;
+
         if (event.getItemInHand().getItemMeta().getDisplayName().contains("מפתח")) {
             event.setBuild(false);
             event.getPlayer().sendMessage(ColorUtils.colorChat(
