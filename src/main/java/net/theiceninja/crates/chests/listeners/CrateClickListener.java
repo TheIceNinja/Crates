@@ -24,9 +24,9 @@ public class CrateClickListener implements Listener {
         if (!crateManager.isCrate(block)) return;
 
         Crate crate = crateManager.getCrate(block);
-        if (event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+        if (event.getAction().equals(Action.LEFT_CLICK_BLOCK))
             event.getPlayer().openInventory(crate.getInventory());
-        } else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+        else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             event.setUseInteractedBlock(Event.Result.DENY);
             if (!event.hasItem()) {
                 crate.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
