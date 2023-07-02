@@ -70,6 +70,7 @@ public class CrateManager implements ICrateManager {
 
         crateList.add(crate);
         cratesFile.save();
+        crate.reload();
     }
 
     @Override

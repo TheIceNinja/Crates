@@ -33,8 +33,6 @@ public class InteractListener implements Listener {
             }
 
             crateSetupHandler.getCrateManager().saveCrate(crate);
-            crate.reload();
-
             crateSetupHandler.removeFromSetup(event.getPlayer());
         }
     }

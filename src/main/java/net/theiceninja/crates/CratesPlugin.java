@@ -5,6 +5,8 @@ import net.theiceninja.crates.chests.managers.CrateManager;
 import net.theiceninja.crates.commands.CratesCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public class CratesPlugin extends JavaPlugin {
 
     private CrateManager crateManager;
@@ -23,6 +25,9 @@ public class CratesPlugin extends JavaPlugin {
     public void onDisable() {
         if (crateManager.getCrateList().isEmpty()) return;
 
-        this.crateManager.getCrateList().forEach(Crate::destroyArmorStand);
+        this.crateManager.getCrateList()
+                .stream()
+                .filter(Objects::nonNull)
+                .forEach(Crate::destroyArmorStand);
     }
 }
