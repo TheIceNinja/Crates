@@ -26,14 +26,14 @@ public class InteractListener implements Listener {
             crateSetupHandler.getCrateManager().getCratesFile().reloadConfig();
             crateSetupHandler.removeFromSetup(event.getPlayer());
         } else if (itemName.equals(ColorUtils.colorString("&aאישור"))) {
-            Crate chest = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
-            if (chest.getLocation() == null) {
+            Crate crate = crateSetupHandler.getSetup().get(event.getPlayer().getUniqueId());
+            if (crate.getLocation() == null) {
                 event.getPlayer().sendMessage(ColorUtils.colorString("&cלא שמת לו מיקום."));
                 return;
             }
 
-            crateSetupHandler.getCrateManager().saveCrate(chest);
-            chest.reload();
+            crateSetupHandler.getCrateManager().saveCrate(crate);
+            crate.reload();
 
             crateSetupHandler.removeFromSetup(event.getPlayer());
         }

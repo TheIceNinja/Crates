@@ -23,13 +23,13 @@ public class CrateClickListener implements Listener {
         Block block = event.getClickedBlock();
         if (!crateManager.isCrate(block)) return;
 
-        Crate chest = crateManager.getCrate(block);
+        Crate crate = crateManager.getCrate(block);
         if (event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-            event.getPlayer().openInventory(chest.getInventory());
+            event.getPlayer().openInventory(crate.getInventory());
         } else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             event.setUseInteractedBlock(Event.Result.DENY);
             if (!event.hasItem()) {
-                chest.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
+                crate.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
                 return;
             }
 
@@ -38,12 +38,12 @@ public class CrateClickListener implements Listener {
             if (event.getItem().getItemMeta() == null) return;
 
             String itemName = event.getItem().getItemMeta().getDisplayName();
-            if (itemName.contains(ColorUtils.colorString(chest.getType().getPrefix()))) {
+            if (itemName.contains(ColorUtils.colorString(crate.getType().getPrefix()))) {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.open(event.getPlayer());
+                crate.open(event.getPlayer());
             } else {
                 event.setUseInteractedBlock(Event.Result.DENY);
-                chest.cancelClick(
+                crate.cancelClick(
                         event.getPlayer(),
                         "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת"
                 );
