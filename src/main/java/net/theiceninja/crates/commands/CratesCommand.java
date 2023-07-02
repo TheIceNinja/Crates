@@ -1,6 +1,6 @@
 package net.theiceninja.crates.commands;
 
-import net.theiceninja.crates.chests.managers.CrateManager;
+import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.commands.subcommands.*;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;

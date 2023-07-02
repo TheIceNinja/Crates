@@ -1,16 +1,16 @@
-package net.theiceninja.crates.chests.managers;
+package net.theiceninja.crates.crate.managers;
 
 import lombok.Getter;
 import net.theiceninja.crates.CratesPlugin;
-import net.theiceninja.crates.api.chest.CrateType;
-import net.theiceninja.crates.api.chest.ICrate;
-import net.theiceninja.crates.api.chest.managers.ICrateManager;
-import net.theiceninja.crates.chests.Crate;
-import net.theiceninja.crates.chests.listeners.BlockBreakListener;
-import net.theiceninja.crates.chests.listeners.BlockPlaceListener;
-import net.theiceninja.crates.chests.listeners.CrateClickListener;
-import net.theiceninja.crates.chests.listeners.PlayerInventoryClickListener;
-import net.theiceninja.crates.chests.setup.CrateSetupHandler;
+import net.theiceninja.crates.api.crate.CrateType;
+import net.theiceninja.crates.api.crate.ICrate;
+import net.theiceninja.crates.api.crate.managers.ICrateManager;
+import net.theiceninja.crates.crate.Crate;
+import net.theiceninja.crates.crate.listeners.BlockBreakListener;
+import net.theiceninja.crates.crate.listeners.BlockPlaceListener;
+import net.theiceninja.crates.crate.listeners.CrateClickListener;
+import net.theiceninja.crates.crate.listeners.PlayerInventoryClickListener;
+import net.theiceninja.crates.crate.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.LocationUtility;
 import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;

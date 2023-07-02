@@ -1,6 +1,6 @@
-package net.theiceninja.crates.api.chest.managers;
+package net.theiceninja.crates.api.crate.managers;
 
-import net.theiceninja.crates.api.chest.ICrate;
+import net.theiceninja.crates.api.crate.ICrate;
 import org.bukkit.block.Block;
 
 public interface ICrateManager {

@@ -1,14 +1,14 @@
-package net.theiceninja.crates.chests.setup;
+package net.theiceninja.crates.crate.setup;
 
 import lombok.Getter;
-import net.theiceninja.crates.api.chest.ICrate;
-import net.theiceninja.crates.api.chest.ISetupHandler;
-import net.theiceninja.crates.chests.Crate;
-import net.theiceninja.crates.chests.managers.CrateManager;
-import net.theiceninja.crates.chests.setup.listeners.BlockPlaceListener;
-import net.theiceninja.crates.chests.setup.listeners.DropItemsListener;
-import net.theiceninja.crates.chests.setup.listeners.InteractListener;
-import net.theiceninja.crates.chests.setup.listeners.QuitListener;
+import net.theiceninja.crates.api.crate.ICrate;
+import net.theiceninja.crates.api.crate.ISetupHandler;
+import net.theiceninja.crates.crate.Crate;
+import net.theiceninja.crates.crate.managers.CrateManager;
+import net.theiceninja.crates.crate.setup.listeners.BlockPlaceListener;
+import net.theiceninja.crates.crate.setup.listeners.DropItemsListener;
+import net.theiceninja.crates.crate.setup.listeners.InteractListener;
+import net.theiceninja.crates.crate.setup.listeners.QuitListener;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.PlayerRollback;
 import org.bukkit.GameMode;

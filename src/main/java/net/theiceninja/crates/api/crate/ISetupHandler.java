@@ -1,4 +1,4 @@
-package net.theiceninja.crates.api.chest;
+package net.theiceninja.crates.api.crate;
 
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

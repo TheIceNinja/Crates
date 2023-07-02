@@ -1,8 +1,8 @@
-package net.theiceninja.crates.chests.listeners;
+package net.theiceninja.crates.crate.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Crate;
-import net.theiceninja.crates.chests.managers.CrateManager;
+import net.theiceninja.crates.crate.Crate;
+import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;

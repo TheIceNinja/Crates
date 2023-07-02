@@ -1,4 +1,4 @@
-package net.theiceninja.crates.api.chest;
+package net.theiceninja.crates.api.crate;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

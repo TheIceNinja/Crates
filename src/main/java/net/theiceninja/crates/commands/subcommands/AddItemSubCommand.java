@@ -1,8 +1,8 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.Crate;
-import net.theiceninja.crates.chests.managers.CrateManager;
+import net.theiceninja.crates.crate.Crate;
+import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;

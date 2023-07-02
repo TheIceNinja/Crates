@@ -1,6 +1,6 @@
-package net.theiceninja.crates.chests.tasks;
+package net.theiceninja.crates.crate.tasks;
 
-import net.theiceninja.crates.chests.Crate;
+import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;

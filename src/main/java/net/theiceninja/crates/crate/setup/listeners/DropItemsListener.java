@@ -1,7 +1,7 @@
-package net.theiceninja.crates.chests.setup.listeners;
+package net.theiceninja.crates.crate.setup.listeners;
 
 import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.chests.setup.CrateSetupHandler;
+import net.theiceninja.crates.crate.setup.CrateSetupHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;

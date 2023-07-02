@@ -1,7 +1,7 @@
 package net.theiceninja.crates;
 
-import net.theiceninja.crates.chests.Crate;
-import net.theiceninja.crates.chests.managers.CrateManager;
+import net.theiceninja.crates.crate.Crate;
+import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.commands.CratesCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 

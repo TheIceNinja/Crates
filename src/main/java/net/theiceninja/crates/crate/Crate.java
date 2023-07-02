@@ -1,11 +1,11 @@
-package net.theiceninja.crates.chests;
+package net.theiceninja.crates.crate;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.theiceninja.crates.api.chest.CrateType;
-import net.theiceninja.crates.api.chest.ICrate;
-import net.theiceninja.crates.chests.managers.CrateManager;
-import net.theiceninja.crates.chests.tasks.GambleTask;
+import net.theiceninja.crates.api.crate.CrateType;
+import net.theiceninja.crates.api.crate.ICrate;
+import net.theiceninja.crates.crate.managers.CrateManager;
+import net.theiceninja.crates.crate.tasks.GambleTask;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Location;

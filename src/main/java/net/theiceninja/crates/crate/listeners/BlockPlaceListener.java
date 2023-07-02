@@ -1,4 +1,4 @@
-package net.theiceninja.crates.chests.listeners;
+package net.theiceninja.crates.crate.listeners;
 
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
