@@ -17,5 +17,4 @@ public class DropItemsListener implements Listener {
 
         event.setCancelled(true);
     }
-
 }

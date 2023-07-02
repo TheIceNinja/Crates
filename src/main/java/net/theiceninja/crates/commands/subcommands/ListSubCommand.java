@@ -18,11 +18,11 @@ public class ListSubCommand implements SubCommand {
             return;
         }
 
-        crateManager.getCrateList().forEach(chest -> player.sendMessage(ColorUtils.colorString(
-                "&#F3D113" + chest.getId()
-                  + "\n&#13BAF3" + chest.getLocation().getX() +
-                    "&6, &#13BAF3" + chest.getLocation().getY() +
-                    "&6, &#13BAF3" + chest.getLocation().getZ()
+        crateManager.getCrateList().forEach(crate -> player.sendMessage(ColorUtils.colorString(
+                "&#F3D113" + crate.getId()
+                  + "\n&#13BAF3" + crate.getLocation().getX() +
+                    "&6, &#13BAF3" + crate.getLocation().getY() +
+                    "&6, &#13BAF3" + crate.getLocation().getZ()
         )));
     }
 

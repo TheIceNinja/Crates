@@ -27,21 +27,21 @@ public class CrateSetupHandler implements ISetupHandler {
     @Getter private final CrateManager crateManager;
     private final PlayerRollback rollbackManager;
 
-    public CrateSetupHandler(CrateManager chestManager) {
-        this.crateManager = chestManager;
+    public CrateSetupHandler(CrateManager crateManager) {
+        this.crateManager = crateManager;
         this.setup = new HashMap<>();
         this.rollbackManager = new PlayerRollback();
 
-        chestManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), chestManager.getPlugin());
-        chestManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), chestManager.getPlugin());
-        chestManager.getPlugin().getServer().getPluginManager().registerEvents(new DropItemsListener(this), chestManager.getPlugin());
-        chestManager.getPlugin().getServer().getPluginManager().registerEvents(new QuitListener(this), chestManager.getPlugin());
+        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), crateManager.getPlugin());
+        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), crateManager.getPlugin());
+        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new DropItemsListener(this), crateManager.getPlugin());
+        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new QuitListener(this), crateManager.getPlugin());
     }
 
     @Override
-    public void addToSetup(@NotNull Player player, @NotNull ICrate iChest) {
-        Crate chest = (Crate) iChest;
-        setup.put(player.getUniqueId(), chest);
+    public void addToSetup(@NotNull Player player, @NotNull ICrate iCrate) {
+        Crate crate = (Crate) iCrate;
+        setup.put(player.getUniqueId(), crate);
         player.getInventory().clear();
         rollbackManager.save(player);
 
@@ -50,7 +50,7 @@ public class CrateSetupHandler implements ISetupHandler {
                 0,
                 new ItemBuilder(Material.CHEST)
                         .setCustomModelData(0)
-                        .setDisplayName(chest.getType().getPrefix())
+                        .setDisplayName(crate.getType().getPrefix())
                         .setGlow(true)
                         .setLore("תשים את זה פשוט וזהו")
                         .build()

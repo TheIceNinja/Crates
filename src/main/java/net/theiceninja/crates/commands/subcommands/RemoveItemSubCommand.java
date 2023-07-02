@@ -31,13 +31,13 @@ public class RemoveItemSubCommand implements SubCommand {
             return;
         }
 
-        Optional<Crate> optionalChest = crateManager.findCrate(Integer.parseInt(args[1]));
-        if (optionalChest.isEmpty()) {
+        Optional<Crate> optionalCrate = crateManager.findCrate(Integer.parseInt(args[1]));
+        if (optionalCrate.isEmpty()) {
             player.sendMessage(ColorUtils.colorString("&#E81E33התיבה לא נמצאה, נסה עם איידי שונה."));
             return;
         }
 
-        optionalChest.get().removeItem(Integer.parseInt(args[2]));
+        optionalCrate.get().removeItem(Integer.parseInt(args[2]));
         player.sendMessage(ColorUtils.colorChat(TextColor.SUCCESS, "נמחק האייטם!"));
     }
 

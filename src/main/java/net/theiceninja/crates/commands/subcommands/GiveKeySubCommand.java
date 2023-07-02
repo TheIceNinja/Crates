@@ -28,10 +28,10 @@ public class GiveKeySubCommand implements SubCommand {
             return;
         }
 
-        CrateType chestType = CrateType.valueOf(args[1].toUpperCase());
+        CrateType crateType = CrateType.valueOf(args[1].toUpperCase());
         player.getInventory().addItem(
                 new ItemBuilder(Material.TRIPWIRE_HOOK)
-                        .setDisplayName("&#F3D813מפתח " + chestType.getPrefix())
+                        .setDisplayName("&#F3D813מפתח " + crateType.getPrefix())
                         .setCustomModelData(plugin.getConfig().getInt("item.keydata"))
                         .build()
         );

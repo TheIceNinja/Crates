@@ -42,13 +42,13 @@ public class AddCrateSubCommand implements SubCommand {
             return;
         }
 
-        Crate chest = new Crate(
+        Crate crate = new Crate(
                 Integer.parseInt(args[1]),
                 CrateType.valueOf(args[2].toUpperCase()),
                 crateManager
         );
 
-        crateManager.getCrateSetupHandler().addToSetup(player, chest);
+        crateManager.getCrateSetupHandler().addToSetup(player, crate);
         player.sendMessage(ColorUtils.colorString(
                 "&bיצרת עכשיו את התיבה "
                         + args[1] + " &bעם הסוג "
