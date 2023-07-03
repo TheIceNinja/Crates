@@ -50,9 +50,9 @@ public class AddCrateSubCommand implements SubCommand {
 
         crateManager.getCrateSetupHandler().addToSetup(player, crate);
         player.sendMessage(ColorUtils.colorString(
-                "&bיצרת עכשיו את התיבה "
-                        + args[1] + " &bעם הסוג "
-                        + CrateType.valueOf(args[2].toUpperCase()).getPrefix())
+                "&bיצרת עכשיו את התיבה " +
+                        args[1] + " &bעם הסוג " +
+                        CrateType.valueOf(args[2].toUpperCase()).getPrefix())
         );
     }
 

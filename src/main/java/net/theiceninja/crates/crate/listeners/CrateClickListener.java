@@ -20,10 +20,9 @@ public class CrateClickListener implements Listener {
     private void onInteract(PlayerInteractEvent event) {
         if (event.getClickedBlock() == null) return;
 
-        Block block = event.getClickedBlock();
-        if (!crateManager.isCrate(block)) return;
+        if (!crateManager.isCrate(event.getClickedBlock())) return;
 
-        Crate crate = crateManager.getCrate(block);
+        Crate crate = crateManager.getCrate(event.getClickedBlock());
         if (event.getAction().equals(Action.LEFT_CLICK_BLOCK))
             event.getPlayer().openInventory(crate.getInventory());
         else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
