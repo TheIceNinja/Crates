@@ -42,8 +42,8 @@ public class CrateSetupHandler implements ISetupHandler {
     public void addToSetup(@NotNull Player player, @NotNull ICrate iCrate) {
         Crate crate = (Crate) iCrate;
         setup.put(player.getUniqueId(), crate);
-        player.getInventory().clear();
         rollbackManager.save(player);
+        player.getInventory().clear();
 
         player.setGameMode(GameMode.CREATIVE);
         player.getInventory().setItem(
