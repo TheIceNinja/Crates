@@ -57,8 +57,8 @@ public class GambleTask extends BukkitRunnable {
 
             crate.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
                     "&#13F338זכית ב &#F3C313" +
-                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                            + " &#13B3F3" + item.getAmount()
+                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
+                            " &#13B3F3" + item.getAmount()
             ));
 
             crate.getDisplayItemArmorStand().getEquipment().setHelmet(item);
@@ -67,8 +67,8 @@ public class GambleTask extends BukkitRunnable {
             player.sendMessage(ColorUtils.colorString(
                     "&r\n" +
                             "&#13F338זכית ב &#F3C313" +
-                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                            + " &#13B3F3" + item.getAmount()
+                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
+                            " &#13B3F3" + item.getAmount()
                     )
             );
 
@@ -76,7 +76,7 @@ public class GambleTask extends BukkitRunnable {
             AtomicInteger timeLeftToSpin = new AtomicInteger(16);
             AtomicInteger yaw = new AtomicInteger();
 
-            plugin.getServer().getScheduler().runTaskTimer(plugin, task -> {
+            crate.getCrateManager().getPlugin().getServer().getScheduler().runTaskTimer(plugin, task -> {
                 if (crate.getDisplayItemArmorStand().getEquipment() == null) task.cancel();
 
                 timeLeftToSpin.getAndDecrement();
@@ -102,8 +102,8 @@ public class GambleTask extends BukkitRunnable {
         ItemStack item = crate.getItems().stream().toList().get(isFirstRound ? firstRoundTimeLength : timeItemLength);
         crate.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
                 "&#F3C713" +
-                        (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName())
-                        + " &#F31353" + item.getAmount()
+                        (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
+                        " &#F31353" + item.getAmount()
         ));
 
         crate.getDisplayItemArmorStand().getEquipment().setHelmet(item);

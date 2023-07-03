@@ -37,7 +37,9 @@ public class CratesCommand extends PluginCommand {
             return;
         }
 
-        Optional<SubCommand> optionalSubCommand = subCommands.stream().filter(subCommand -> subCommand.getName().equalsIgnoreCase(args[0])).findFirst();
+        Optional<SubCommand> optionalSubCommand = subCommands.stream()
+                .filter(subCommand -> subCommand.getName().equalsIgnoreCase(args[0]))
+                .findFirst();
         if (optionalSubCommand.isEmpty()) {
             player.sendMessage(ColorUtils.colorChat(
                     TextColor.WRONG_USAGE,

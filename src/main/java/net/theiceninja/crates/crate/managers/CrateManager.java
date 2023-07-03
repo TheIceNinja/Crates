@@ -55,6 +55,7 @@ public class CrateManager implements ICrateManager {
     @Override
     public boolean isCrate(@NotNull Block block) {
         if (crateList.isEmpty()) return false;
+
         return crateList.stream().anyMatch(crate -> crate.getLocation().getBlock().equals(block));
     }
 
@@ -110,7 +111,7 @@ public class CrateManager implements ICrateManager {
 
             plugin.getLogger().info(
                     "Loading crate: " + crate.getId() + " " +
-                            "Rarity: " + crate.getType() + " " +
+                            "Rarity: " + crate.getType().name().toUpperCase() + " " +
                             "Items: " + Arrays.toString(crate.getItems().toArray())
             );
         }

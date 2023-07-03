@@ -32,7 +32,6 @@ public class GiveKeySubCommand implements SubCommand {
         player.getInventory().addItem(
                 new ItemBuilder(Material.TRIPWIRE_HOOK)
                         .setDisplayName("&#F3D813מפתח " + crateType.getPrefix())
-                        .setCustomModelData(plugin.getConfig().getInt("item.keydata"))
                         .build()
         );
 

@@ -75,9 +75,8 @@ public class Crate implements ICrate {
         if (item.getItemMeta() == null) return;
 
         String key = item.getItemMeta().getDisplayName();
-        if (key.isEmpty()) {
+        if (key.isEmpty())
             key = UUID.randomUUID().toString();
-        }
 
         crateManager.getCratesFile().get().set("chests." + id + ".items." + key, item);
         crateManager.getCratesFile().save();
@@ -92,8 +91,8 @@ public class Crate implements ICrate {
         if (item.getItemMeta() == null) return;
 
         crateManager.getCratesFile().get().set(
-                "chests." + id + ".items." + item.getItemMeta().getDisplayName()
-                , null
+                "chests." + id + ".items." + item.getItemMeta().getDisplayName(),
+                null
         );
         crateManager.getCratesFile().save();
     }
@@ -165,7 +164,7 @@ public class Crate implements ICrate {
             return;
         }
 
-        open = true;
+        setOpen(true);
         this.displayItemArmorStand.setCustomNameVisible(true);
 
         ItemStack item = player.getInventory().getItemInMainHand();
@@ -211,6 +210,6 @@ public class Crate implements ICrate {
         if (this.displayItemArmorStand.getEquipment() == null) return;
 
         this.displayItemArmorStand.getEquipment().setHelmet(null);
-        open = false;
+        setOpen(false);
     }
 }
