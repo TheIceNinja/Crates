@@ -5,7 +5,7 @@ import lombok.Setter;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.api.crate.ICrate;
 import net.theiceninja.crates.crate.managers.CrateManager;
-import net.theiceninja.crates.crate.tasks.GambleTask;
+import net.theiceninja.crates.crate.tasks.CrateChooseItemTask;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.Location;
@@ -30,7 +30,7 @@ public class Crate implements ICrate {
     private ArmorStand
             displayItemArmorStand,
             displayNameArmorStand;
-    private GambleTask gambleTask;
+    private CrateChooseItemTask chooseItemTask;
 
     @Setter private Location location;
     private final Set<ItemStack> items;
@@ -169,7 +169,7 @@ public class Crate implements ICrate {
 
         ItemStack item = player.getInventory().getItemInMainHand();
         item.setAmount(item.getAmount() - 1);
-        gamble(player);
+        chooseItem(player);
         player.sendMessage(ColorUtils.colorString("&aפותח לך את התיבה!"));
     }
 
@@ -191,17 +191,17 @@ public class Crate implements ICrate {
     }
 
     @Override
-    public void gamble(@NotNull Player player) {
+    public void chooseItem(@NotNull Player player) {
         int randomNumber = (int) NumberUtils.randomizer(0, items.size() - 1);
-        if (this.gambleTask != null) this.gambleTask.cancel();
+        if (this.chooseItemTask != null) this.chooseItemTask.cancel();
 
-        this.gambleTask = new GambleTask(
+        this.chooseItemTask = new CrateChooseItemTask(
                 player.getUniqueId(),
                 randomNumber,
                 items.size() - 1,
                 this
         );
-        this.gambleTask.runTaskTimer(crateManager.getPlugin(), 0, 16);
+        this.chooseItemTask.runTaskTimer(crateManager.getPlugin(), 0, 16);
     }
 
     @Override

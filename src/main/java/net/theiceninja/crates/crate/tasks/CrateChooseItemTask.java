@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class GambleTask extends BukkitRunnable {
+public class CrateChooseItemTask extends BukkitRunnable {
 
     private final int randomNumber;
     private int timeItemLength;
@@ -23,7 +23,7 @@ public class GambleTask extends BukkitRunnable {
 
     private boolean isFirstRound = true;
 
-    public GambleTask(UUID uuid, int randomNumber, int length, Crate chest) {
+    public CrateChooseItemTask(UUID uuid, int randomNumber, int length, Crate chest) {
         this.randomNumber = randomNumber;
         this.timeItemLength = length;
         this.crate = chest;

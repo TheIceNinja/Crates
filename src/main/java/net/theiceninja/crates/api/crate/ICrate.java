@@ -17,7 +17,7 @@ public interface ICrate {
     boolean isOpen();
     void setOpen(boolean open);
 
-    void gamble(@NotNull Player player);
+    void chooseItem(@NotNull Player player);
     void reset();
 
 }
