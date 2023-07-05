@@ -12,7 +12,11 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 
-@CommandInfo(name = "crates", permission = "crates.admin", subCommandNames = {"delete", "add", "list", "additem", "givekey", "removeitem"})
+@CommandInfo(
+        name = "crates",
+        permission = "crates.admin",
+        subCommandNames = {"delete", "add", "list", "additem", "givekey", "removeitem", "help"}
+)
 public class CratesCommand extends PluginCommand {
 
     private final Set<SubCommand> subCommands = new HashSet<>();
