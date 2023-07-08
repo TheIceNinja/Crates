@@ -10,7 +10,7 @@ import net.theiceninja.crates.crate.setup.listeners.DropItemsListener;
 import net.theiceninja.crates.crate.setup.listeners.InteractListener;
 import net.theiceninja.crates.crate.setup.listeners.QuitListener;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
-import net.theiceninja.utilitys.spigot.PlayerRollback;
+import net.theiceninja.utilitys.spigot.handlers.PlayerRollbackHandler;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,12 +25,12 @@ public class CrateSetupHandler implements ISetupHandler {
     @Getter private final Map<UUID, Crate> setup;
 
     @Getter private final CrateManager crateManager;
-    private final PlayerRollback rollbackManager;
+    private final PlayerRollbackHandler rollbackManager;
 
     public CrateSetupHandler(CrateManager crateManager) {
         this.crateManager = crateManager;
         this.setup = new HashMap<>();
-        this.rollbackManager = new PlayerRollback();
+        this.rollbackManager = new PlayerRollbackHandler();
 
         crateManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), crateManager.getPlugin());
         crateManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), crateManager.getPlugin());

@@ -5,7 +5,7 @@ import net.theiceninja.crates.CratesPlugin;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.commands.SubCommand;
+import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 

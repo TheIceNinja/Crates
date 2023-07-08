@@ -4,10 +4,10 @@ import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.commands.subcommands.*;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
-import net.theiceninja.utilitys.spigot.commands.CommandInfo;
-import net.theiceninja.utilitys.spigot.commands.PluginCommand;
-import net.theiceninja.utilitys.spigot.commands.SubCommand;
-import net.theiceninja.utilitys.spigot.commands.subcommand.HelpSubCommand;
+import net.theiceninja.utilitys.spigot.handlers.command.CommandInfo;
+import net.theiceninja.utilitys.spigot.handlers.command.PluginCommand;
+import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
+import net.theiceninja.utilitys.spigot.handlers.command.subcommand.HelpSubCommand;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -15,7 +15,7 @@ import java.util.*;
 @CommandInfo(
         name = "crates",
         permission = "crates.admin",
-        subCommandNames = {"delete", "add", "list", "additem", "givekey", "removeitem", "help"}
+        subCommandsNames = {"delete", "add", "list", "additem", "givekey", "removeitem", "help"}
 )
 public class CratesCommand extends PluginCommand {
 

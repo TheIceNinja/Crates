@@ -6,7 +6,7 @@ import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
-import net.theiceninja.utilitys.spigot.commands.SubCommand;
+import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import org.bukkit.entity.Player;
 
 import java.util.Optional;
