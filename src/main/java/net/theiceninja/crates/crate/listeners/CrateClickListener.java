@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +18,6 @@ public class CrateClickListener implements Listener {
     @EventHandler
     private void onInteract(PlayerInteractEvent event) {
         if (event.getClickedBlock() == null) return;
-
         if (!crateManager.isCrate(event.getClickedBlock())) return;
 
         Crate crate = crateManager.getCrate(event.getClickedBlock());

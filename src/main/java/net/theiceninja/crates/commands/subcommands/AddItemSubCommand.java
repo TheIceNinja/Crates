@@ -10,7 +10,6 @@ import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Optional;
 
@@ -44,11 +43,6 @@ public class AddItemSubCommand implements SubCommand {
         if (player.getInventory().getItemInMainHand().getType() == Material.AIR) {
             player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להחזיק משהו!"));
             return;
-        }
-
-        if (item.getItemMeta() == null) {
-            ItemMeta meta = item.getItemMeta();
-            item.setItemMeta(meta);
         }
 
         optionalCrate.get().addItem(item);

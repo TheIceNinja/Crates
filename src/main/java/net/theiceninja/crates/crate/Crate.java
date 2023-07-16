@@ -38,7 +38,12 @@ public class Crate implements ICrate {
     private final CrateManager crateManager;
 
     // loading from configuration file
-    public Crate(int id, CrateType crateType, Location chestLocation, Set<ItemStack> items, CrateManager crateManager) {
+    public Crate(
+            int id,
+            CrateType crateType,
+            Location chestLocation,
+            Set<ItemStack> items,
+            CrateManager crateManager) {
         this.id = id;
         this.type = crateType;
         this.items = items;
@@ -76,7 +81,7 @@ public class Crate implements ICrate {
 
         String key = item.getItemMeta().getDisplayName();
         if (key.isEmpty())
-            key = UUID.randomUUID().toString();
+            key = item.getType().name();
 
         crateManager.getCratesFile().get().set("chests." + id + ".items." + key, item);
         crateManager.getCratesFile().save();
