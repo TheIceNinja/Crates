@@ -10,7 +10,9 @@ import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import net.theiceninja.utilitys.spigot.handlers.command.subcommand.HelpSubCommand;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @CommandInfo(
         name = "crates",
