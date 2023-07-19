@@ -25,7 +25,6 @@ public class CrateSetupHandler implements ISetupHandler {
     @Getter private final Map<UUID, Crate> setup;
 
     @Getter private final CrateManager crateManager;
-
     private final PlayerRollbackHandler rollbackManager;
 
     public CrateSetupHandler(CrateManager crateManager) {

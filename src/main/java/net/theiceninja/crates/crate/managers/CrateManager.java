@@ -9,7 +9,7 @@ import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.listeners.BlockBreakListener;
 import net.theiceninja.crates.crate.listeners.BlockPlaceListener;
 import net.theiceninja.crates.crate.listeners.CrateClickListener;
-import net.theiceninja.crates.crate.listeners.PlayerInventoryClickListener;
+import net.theiceninja.crates.crate.listeners.InventoryClickListener;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.LocationUtility;
 import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
@@ -40,7 +40,7 @@ public class CrateManager implements ICrateManager {
         loadCrates();
 
         plugin.getServer().getPluginManager().registerEvents(new CrateClickListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new PlayerInventoryClickListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new InventoryClickListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
     }
