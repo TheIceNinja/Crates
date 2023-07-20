@@ -67,7 +67,7 @@ public class CrateChooseItemTask extends BukkitRunnable {
                     "&r\n" +
                             "&#13F338זכית ב &#F3C313" +
                             (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
-                            " &#13B3F3" + item.getAmount()
+                            " &#13B3F3" + item.getAmount() + "\n&r"
                     )
             );
 

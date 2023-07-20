@@ -1,7 +1,5 @@
 package net.theiceninja.crates.commands.subcommands;
 
-import lombok.RequiredArgsConstructor;
-import net.theiceninja.crates.CratesPlugin;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
@@ -11,10 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
-@RequiredArgsConstructor
 public class GiveKeySubCommand implements SubCommand {
-
-    private final CratesPlugin plugin;
 
     @Override
     public void execute(Player player, String[] args) {
