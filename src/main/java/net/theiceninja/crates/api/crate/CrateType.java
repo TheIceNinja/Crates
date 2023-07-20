@@ -9,7 +9,7 @@ public enum CrateType {
 
     RARE("&#3BD864&lRare"),
     EPIC("&#FAB3FF&lEpic"),
-    LEGENDARY("&#F8CE4BLegendary"),
+    LEGENDARY("&#F8CE4B&lLegendary"),
     VOTE("&#A2FF99&lVote");
 
 
