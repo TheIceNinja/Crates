@@ -45,11 +45,11 @@ public class CrateManager implements ICrateManager {
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
     }
 
-    public Crate getCrate(@NotNull Block block) {
+    public Crate getCrateFromBlock(@NotNull Block block) {
         return crateList.stream().filter(crate -> crate.getLocation().getBlock().equals(block)).iterator().next();
     }
 
-    public Optional<Crate> findCrate(int id) {
+    public Optional<Crate> findCrateById(int id) {
         if (crateList.isEmpty()) return Optional.empty();
 
         return crateList.stream().filter(existing -> existing.getId() == id).findAny();
