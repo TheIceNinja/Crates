@@ -7,7 +7,6 @@ import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 @RequiredArgsConstructor
@@ -21,29 +20,28 @@ public class CrateClickListener implements Listener {
         if (!crateManager.isCrate(event.getClickedBlock())) return;
 
         Crate crate = crateManager.getCrate(event.getClickedBlock());
-        if (event.getAction().equals(Action.LEFT_CLICK_BLOCK))
-            event.getPlayer().openInventory(crate.getInventory());
-        else if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            event.setUseInteractedBlock(Event.Result.DENY);
-            if (!event.hasItem()) {
-                crate.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
-                return;
-            }
 
-            if (event.getItem() == null) return;
-            if (!event.getItem().hasItemMeta()) return;
-            if (event.getItem().getItemMeta() == null) return;
+        switch (event.getAction()) {
+            case LEFT_CLICK_BLOCK -> event.getPlayer().openInventory(crate.getInventory());
+            case RIGHT_CLICK_BLOCK -> {
+                event.setUseInteractedBlock(Event.Result.DENY);
+                if (!event.hasItem()) {
+                    crate.cancelClick(event.getPlayer(), "&#E81E33אתה צריך מפתח לתיבה הזאת!");
+                    return;
+                }
 
-            String itemName = event.getItem().getItemMeta().getDisplayName();
-            if (itemName.contains(ColorUtils.colorString(crate.getType().getPrefix()))) {
-                event.setUseInteractedBlock(Event.Result.DENY);
-                crate.open(event.getPlayer());
-            } else {
-                event.setUseInteractedBlock(Event.Result.DENY);
-                crate.cancelClick(
-                        event.getPlayer(),
-                        "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת"
-                );
+                if (event.getItem() == null) return;
+                if (!event.getItem().hasItemMeta()) return;
+                if (event.getItem().getItemMeta() == null) return;
+
+                String itemName = event.getItem().getItemMeta().getDisplayName();
+                if (itemName.contains(ColorUtils.colorString(crate.getType().getPrefix())))
+                    crate.open(event.getPlayer());
+                else
+                    crate.cancelClick(
+                            event.getPlayer(),
+                            "&#E81E33אתה צריך את המפתח התקין לתיבה הזאת"
+                    );
             }
         }
     }

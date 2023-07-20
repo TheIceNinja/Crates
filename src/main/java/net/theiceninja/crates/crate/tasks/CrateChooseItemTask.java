@@ -2,7 +2,6 @@ package net.theiceninja.crates.crate.tasks;
 
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -14,22 +13,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CrateChooseItemTask extends BukkitRunnable {
 
+    private final Player player;
+    private final Crate crate;
+
     private final int randomNumber;
     private int timeItemLength;
     private int firstRoundTimeLength;
 
-    private final Crate crate;
-    private final Player player;
-
     private boolean isFirstRound = true;
 
-    public CrateChooseItemTask(UUID uuid, int randomNumber, int length, Crate chest) {
+    public CrateChooseItemTask(UUID uuid, int randomNumber, int length, Crate crate) {
         this.randomNumber = randomNumber;
         this.timeItemLength = length;
-        this.crate = chest;
+        this.crate = crate;
 
-        this.player = Bukkit.getPlayer(uuid);
-        this.firstRoundTimeLength = chest.getItems().size();
+        this.player = crate.getCrateManager().getPlugin().getServer().getPlayer(uuid);
+        this.firstRoundTimeLength = crate.getItems().size();
     }
 
     @Override
