@@ -24,7 +24,7 @@ public class CratesCommand extends PluginCommand {
     private final Set<SubCommand> subCommands = new HashSet<>();
 
     public CratesCommand(CrateManager crateManager) {
-        subCommands.add(new GiveKeySubCommand(crateManager.getPlugin()));
+        subCommands.add(new GiveKeySubCommand());
         subCommands.add(new AddItemSubCommand(crateManager));
         subCommands.add(new DeleteCrateSubCommand(crateManager));
         subCommands.add(new RemoveItemSubCommand(crateManager));
