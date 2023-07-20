@@ -18,7 +18,7 @@ public class RemoveItemSubCommand implements SubCommand {
 
     @Override
     public void execute(Player player, String[] args) {
-        if (args.length < 2) {
+        if (args.length < 3) {
             player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להקליד את האיידי של התיבה + המספר של האייטם בתיבה"));
             return;
         }
