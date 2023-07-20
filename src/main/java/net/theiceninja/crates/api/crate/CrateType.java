@@ -7,8 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum CrateType {
 
-    RARE("&#17F73C&lRare"),
-    EPIC("&#C117F7&lEpic");
+    RARE("&#3BD864&lRare"),
+    EPIC("&#FAB3FF&lEpic"),
+    LEGENDARY("&#F8CE4BLegendary"),
+    VOTE("&#A2FF99&lVote");
+
 
     private final String prefix;
 }
