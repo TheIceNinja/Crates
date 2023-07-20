@@ -8,6 +8,7 @@ import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.crate.tasks.CrateChooseItemTask;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -16,6 +17,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -69,7 +71,7 @@ public class Crate implements ICrate {
                 "דברים שאתה יכול לקבל"
         );
         for (int i = 0; i < items.size(); i++) {
-            ItemStack item = items.stream().toList().get(i);
+            ItemStack item = (ItemStack) items.toArray()[i];
             itemsMenu.addItem(item);
         }
 
@@ -78,13 +80,16 @@ public class Crate implements ICrate {
 
     @Override
     public void addItem(@NotNull ItemStack item) {
-        if (item.getItemMeta() == null) return;
-
         String key = item.getItemMeta().getDisplayName();
-        if (key.isEmpty())
+        if (key.isEmpty()) {
             key = item.getType().name();
 
-        crateManager.getCratesFile().get().set("chests." + id + ".items." + key, item);
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(ColorUtils.colorString(key));
+            item.setItemMeta(meta);
+        }
+
+        crateManager.getCratesFile().get().set("crates." + id + ".items." + key, item);
         crateManager.getCratesFile().save();
 
         items.add(item);
@@ -92,7 +97,7 @@ public class Crate implements ICrate {
 
     @Override
     public void removeItem(int index) {
-        ItemStack item = items.stream().toList().get(index);
+        ItemStack item = (ItemStack) items.toArray()[index];
         items.removeIf(existing -> existing.equals(item));
         if (item.getItemMeta() == null) return;
 
