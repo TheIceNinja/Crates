@@ -19,5 +19,4 @@ public class EntityExplodeListener implements Listener {
             event.setCancelled(true);
         });
     }
-
 }
