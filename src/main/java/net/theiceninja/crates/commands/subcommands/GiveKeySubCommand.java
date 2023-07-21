@@ -1,6 +1,7 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import net.theiceninja.crates.api.crate.CrateType;
+import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
@@ -14,8 +15,8 @@ public class GiveKeySubCommand implements SubCommand {
 
     @Override
     public void execute(Player player, String[] args) {
-        if (args.length < 2) {
-            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להקליד את הסוג של המפתח"));
+        if (args.length < 3) {
+            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך להקליד את הסוג של המפתח ו-כמות."));
             return;
         }
 
@@ -24,10 +25,19 @@ public class GiveKeySubCommand implements SubCommand {
             return;
         }
 
+        if (!NumberUtils.isNumeric(args[2])) {
+            player.sendMessage(ColorUtils.colorChat(
+                    TextColor.ERROR,
+                    "אתה צריך שזה יהיה מספר."
+            ));
+            return;
+        }
+
         CrateType crateType = CrateType.valueOf(args[1].toUpperCase());
         player.getInventory().addItem(
                 new ItemBuilder(Material.TRIPWIRE_HOOK)
                         .setDisplayName("&#F3D813מפתח " + crateType.getPrefix())
+                        .setAmount(Integer.parseInt(args[2]))
                         .build()
         );
 

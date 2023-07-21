@@ -39,6 +39,7 @@ public class CrateManager implements ICrateManager {
         plugin.getServer().getPluginManager().registerEvents(new InventoryClickListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new EntityExplodeListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(this), plugin);
     }
 
@@ -76,7 +77,7 @@ public class CrateManager implements ICrateManager {
         Crate crate = (Crate) iCrate;
         crate.delete();
         crateList.removeIf(existing -> existing.equals(crate));
-        cratesFile.get().set("chests." + crate.getId(), null);
+        cratesFile.get().set("crates." + crate.getId(), null);
 
         cratesFile.save();
     }
