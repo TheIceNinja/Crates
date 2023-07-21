@@ -7,7 +7,9 @@ import net.theiceninja.crates.api.crate.ICrate;
 import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.crate.tasks.CrateChooseItemTask;
 import net.theiceninja.utilitys.java.NumberUtils;
+import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 public class Crate implements ICrate {
@@ -67,10 +70,19 @@ public class Crate implements ICrate {
     public Inventory getInventory() {
         Inventory itemsMenu = crateManager.getPlugin().getServer().createInventory(
                 null,
-                27,
+                36,
                 "דברים שאתה יכול לקבל"
         );
+
+        itemsMenu.setItem(
+                31,
+                new ItemBuilder(Material.BARRIER)
+                        .setDisplayName(TextColor.RED + "יציאה")
+                        .build()
+        );
         for (int i = 0; i < items.size(); i++) {
+            if (i == 27) break;
+
             ItemStack item = (ItemStack) items.toArray()[i];
             itemsMenu.addItem(item);
         }
@@ -82,7 +94,7 @@ public class Crate implements ICrate {
     public void addItem(@NotNull ItemStack item) {
         String key = item.getItemMeta().getDisplayName();
         if (key.isEmpty()) {
-            key = item.getType().name();
+            key = Character.toUpperCase(item.getType().name().charAt(0)) + item.getType().name().substring(1).toLowerCase();
 
             ItemMeta meta = item.getItemMeta();
             meta.setDisplayName(ColorUtils.colorString(key));
@@ -203,7 +215,7 @@ public class Crate implements ICrate {
 
     @Override
     public void chooseItem(@NotNull Player player) {
-        int randomNumber = (int) NumberUtils.randomizer(0, items.size() - 1);
+        int randomNumber = ThreadLocalRandom.current().nextInt(0, items.size() - 1);
         if (this.chooseItemTask != null) this.chooseItemTask.cancel();
 
         this.chooseItemTask = new CrateChooseItemTask(

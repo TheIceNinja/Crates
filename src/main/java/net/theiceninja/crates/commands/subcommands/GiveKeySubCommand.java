@@ -3,6 +3,7 @@ package net.theiceninja.crates.commands.subcommands;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utilitys.spigot.color.TextColor;
 import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class GiveKeySubCommand implements SubCommand {
                         .build()
         );
 
-        player.sendMessage(ColorUtils.colorString("&aנוסף לך מפתח אחד לאינבנטורי שלך!"));
+        player.sendMessage(ColorUtils.colorString(TextColor.SUCCESS + "נוסף לך מפתח אחד לאינבנטורי שלך!"));
     }
 
     @Override

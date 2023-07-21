@@ -11,7 +11,6 @@ import net.theiceninja.crates.crate.listeners.BlockPlaceListener;
 import net.theiceninja.crates.crate.listeners.CrateClickListener;
 import net.theiceninja.crates.crate.listeners.InventoryClickListener;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
-import net.theiceninja.utilitys.spigot.LocationUtility;
 import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
@@ -67,10 +66,7 @@ public class CrateManager implements ICrateManager {
         Crate crate = (Crate) iCrate;
         cratesFile.get().set("crates." + crate.getId() + ".id", crate.getId());
         cratesFile.get().set("crates." + crate.getId() + ".type", crate.getType().toString());
-        LocationUtility.setLocation(
-                crate.getLocation(),
-                cratesFile.get().createSection("crates." + crate.getId() + ".location")
-        );
+        cratesFile.setLocation("crates." + crate.getId() + ".location", crate.getLocation());
 
         crateList.add(crate);
         cratesFile.save();
@@ -106,7 +102,7 @@ public class CrateManager implements ICrateManager {
             Crate crate = new Crate(
                     crateSection.getInt("id"),
                     CrateType.valueOf(crateSection.getString("type")),
-                    LocationUtility.readLocation(crateSection.getConfigurationSection("location")),
+                    cratesFile.readLocation("crates." + crateID + ".location"),
                     items,
                     this
             );

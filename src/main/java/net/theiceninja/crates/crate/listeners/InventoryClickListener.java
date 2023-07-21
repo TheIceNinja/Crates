@@ -9,7 +9,13 @@ public class InventoryClickListener implements Listener {
 
     @EventHandler
     private void onInteract(InventoryClickEvent event) {
-        if (event.getView().getTitle().equals(ColorUtils.colorString("דברים שאתה יכול לקבל")))
-            event.setCancelled(true);
+        if (!event.getView().getTitle().equals(ColorUtils.colorString("דברים שאתה יכול לקבל"))) return;
+
+        event.setCancelled(true);
+        if (event.getCurrentItem() == null) return;
+        if (!event.getCurrentItem().hasItemMeta()) return;
+        if (!event.getCurrentItem().getItemMeta().getDisplayName().contains("יציאה")) return;
+
+        event.getWhoClicked().closeInventory();
     }
 }

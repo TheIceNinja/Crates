@@ -38,7 +38,7 @@ public class DeleteCrateSubCommand implements SubCommand {
         }
 
         crateManager.deleteCrate(optionalCrate.get());
-        player.sendMessage(ColorUtils.colorString("&#E81E33התיבה הוסרה בהצלחה!"));
+        player.sendMessage(ColorUtils.colorString(TextColor.SUCCESS + "התיבה הוסרה בהצלחה!"));
     }
 
     @Override

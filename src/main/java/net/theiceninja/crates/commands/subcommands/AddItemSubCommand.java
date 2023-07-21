@@ -46,7 +46,7 @@ public class AddItemSubCommand implements SubCommand {
         }
 
         optionalCrate.get().addItem(item);
-        player.sendMessage(ColorUtils.colorString("&#E81E33הוספת בהצלחה!"));
+        player.sendMessage(ColorUtils.colorString(TextColor.SUCCESS + "הוספת בהצלחה!"));
     }
 
     @Override

@@ -30,7 +30,13 @@ public class CrateClickListener implements Listener {
                 }
 
                 if (event.getItem() == null) return;
-                if (!event.getItem().hasItemMeta()) return;
+                if (!event.getItem().hasItemMeta()) {
+                    crate.cancelClick(
+                            event.getPlayer(),
+                            "&#E81E33אתה צריך קודם שיהיה לך מפתח לפני שאתה מנסה לפתוח את התיבה!"
+                    );
+                    return;
+                }
                 if (event.getItem().getItemMeta() == null) return;
 
                 String itemName = event.getItem().getItemMeta().getDisplayName();

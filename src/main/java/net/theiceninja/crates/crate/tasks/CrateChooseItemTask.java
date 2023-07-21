@@ -47,6 +47,7 @@ public class CrateChooseItemTask extends BukkitRunnable {
             firstRoundTimeLength = 0;
         }
 
+        // get the item (choose the item by the random number) and ending the animation
         if (timeItemLength == randomNumber && !isFirstRound) {
             cancel();
             if (crate.getDisplayItemArmorStand() == null) return;
@@ -96,6 +97,7 @@ public class CrateChooseItemTask extends BukkitRunnable {
         if (crate.getDisplayItemArmorStand() == null) return;
         if (crate.getDisplayItemArmorStand().getEquipment() == null) return;
 
+        // showing players the items, after that choosing the item
         player.playSound(player, Sound.BLOCK_AMETHYST_BLOCK_BREAK, 3, 1);
 
         ItemStack item = crate.getItems().stream().toList().get(isFirstRound ? firstRoundTimeLength : timeItemLength);
