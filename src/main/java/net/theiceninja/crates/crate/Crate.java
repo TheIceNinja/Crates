@@ -6,11 +6,9 @@ import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.api.crate.ICrate;
 import net.theiceninja.crates.crate.managers.CrateManager;
 import net.theiceninja.crates.crate.tasks.CrateChooseItemTask;
-import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -41,6 +39,7 @@ public class Crate implements ICrate {
     @Setter private Location location;
     private final Set<ItemStack> items;
 
+    private final Set<ArmorStand> armorStands = new HashSet<>();
     private final CrateManager crateManager;
 
     // loading from configuration file

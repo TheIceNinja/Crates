@@ -6,10 +6,7 @@ import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.api.crate.ICrate;
 import net.theiceninja.crates.api.crate.managers.ICrateManager;
 import net.theiceninja.crates.crate.Crate;
-import net.theiceninja.crates.crate.listeners.BlockBreakListener;
-import net.theiceninja.crates.crate.listeners.BlockPlaceListener;
-import net.theiceninja.crates.crate.listeners.CrateClickListener;
-import net.theiceninja.crates.crate.listeners.InventoryClickListener;
+import net.theiceninja.crates.crate.listeners.*;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
 import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
@@ -42,6 +39,7 @@ public class CrateManager implements ICrateManager {
         plugin.getServer().getPluginManager().registerEvents(new InventoryClickListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(this), plugin);
     }
 
     public Crate getCrateFromBlock(@NotNull Block block) {
