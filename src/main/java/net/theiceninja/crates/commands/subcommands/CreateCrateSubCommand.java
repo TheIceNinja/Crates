@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.managers.CrateManager;
+import net.theiceninja.utilitys.Messages;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.color.TextColor;
 import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
 import org.bukkit.entity.Player;
 
@@ -25,10 +25,7 @@ public class CreateCrateSubCommand implements SubCommand {
         }
 
         if (!NumberUtils.isNumeric(args[1])) {
-            player.sendMessage(ColorUtils.colorChat(
-                    TextColor.ERROR,
-                    "ארגיומנט זה לא מספר, אנא כתוב משהו שהוא מספר."
-            ));
+            player.sendMessage(Messages.NOT_NUMBER);
             return;
         }
 

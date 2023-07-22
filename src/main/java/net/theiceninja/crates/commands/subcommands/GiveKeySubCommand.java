@@ -1,6 +1,7 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import net.theiceninja.crates.api.crate.CrateType;
+import net.theiceninja.utilitys.Messages;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.ItemBuilder;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
@@ -26,10 +27,7 @@ public class GiveKeySubCommand implements SubCommand {
         }
 
         if (!NumberUtils.isNumeric(args[2])) {
-            player.sendMessage(ColorUtils.colorChat(
-                    TextColor.ERROR,
-                    "אתה צריך שזה יהיה מספר."
-            ));
+            player.sendMessage(Messages.NOT_NUMBER);
             return;
         }
 

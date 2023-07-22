@@ -3,6 +3,7 @@ package net.theiceninja.crates.commands.subcommands;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.managers.CrateManager;
+import net.theiceninja.utilitys.Messages;
 import net.theiceninja.utilitys.java.NumberUtils;
 import net.theiceninja.utilitys.spigot.color.ColorUtils;
 import net.theiceninja.utilitys.spigot.color.TextColor;
@@ -26,10 +27,7 @@ public class AddItemSubCommand implements SubCommand {
         }
 
         if (!NumberUtils.isNumeric(args[1])) {
-            player.sendMessage(ColorUtils.colorChat(
-                    TextColor.ERROR,
-                    "ארגיומנט זה לא מספר, אנא כתוב משהו שהוא מספר."
-            ));
+            player.sendMessage(Messages.NOT_NUMBER);
             return;
         }
 
