@@ -25,12 +25,12 @@ public class CrateSetupHandler implements ISetupHandler {
     @Getter private final Map<UUID, Crate> setup;
 
     @Getter private final CrateManager crateManager;
-    private final PlayerRollbackHandler rollbackManager;
+    private final PlayerRollbackHandler rollbackHandler;
 
     public CrateSetupHandler(CrateManager crateManager) {
         this.crateManager = crateManager;
         this.setup = new HashMap<>();
-        this.rollbackManager = new PlayerRollbackHandler();
+        this.rollbackHandler = new PlayerRollbackHandler();
 
         crateManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), crateManager.getPlugin());
         crateManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), crateManager.getPlugin());
@@ -42,7 +42,7 @@ public class CrateSetupHandler implements ISetupHandler {
     public void addToSetup(@NotNull Player player, @NotNull ICrate iCrate) {
         Crate crate = (Crate) iCrate;
         setup.put(player.getUniqueId(), crate);
-        rollbackManager.save(player);
+        rollbackHandler.save(player);
         player.getInventory().clear();
 
         player.setGameMode(GameMode.CREATIVE);
@@ -76,7 +76,7 @@ public class CrateSetupHandler implements ISetupHandler {
     public void removeFromSetup(final @NotNull Player player) {
         setup.remove(player.getUniqueId());
         player.getInventory().clear();
-        rollbackManager.restore(player);
+        rollbackHandler.restore(player);
     }
 
     @Override
