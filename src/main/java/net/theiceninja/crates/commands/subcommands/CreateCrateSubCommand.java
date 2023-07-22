@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 @RequiredArgsConstructor
-public class AddCrateSubCommand implements SubCommand {
+public class CreateCrateSubCommand implements SubCommand {
 
     private final CrateManager crateManager;
 
@@ -58,7 +58,7 @@ public class AddCrateSubCommand implements SubCommand {
 
     @Override
     public String getName() {
-        return "add";
+        return "create";
     }
 
     @Override

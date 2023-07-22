@@ -17,7 +17,16 @@ import java.util.Set;
 @CommandInfo(
         name = "crates",
         permission = "crates.admin",
-        subCommandsNames = {"delete", "add", "list", "additem", "givekey", "removeitem", "help"}
+        subCommandsNames = {
+                "delete",
+                "create",
+                "list",
+                "additem",
+                "givekey",
+                "removeitem",
+                "help",
+                "createCustomItem" // later
+        }
 )
 public class CratesCommand extends PluginCommand {
 
@@ -29,7 +38,7 @@ public class CratesCommand extends PluginCommand {
         subCommands.add(new DeleteCrateSubCommand(crateManager));
         subCommands.add(new RemoveItemSubCommand(crateManager));
         subCommands.add(new ListSubCommand(crateManager));
-        subCommands.add(new AddCrateSubCommand(crateManager));
+        subCommands.add(new CreateCrateSubCommand(crateManager));
         subCommands.add(new HelpSubCommand(subCommands, getCommandInfo()));
     }
 

@@ -51,24 +51,25 @@ public class CrateChooseItemTask extends BukkitRunnable {
         if (timeItemLength == randomNumber && !isFirstRound) {
             cancel();
             if (crate.getDisplayItemArmorStand() == null) return;
-
-            ItemStack item = crate.getItems().stream().toList().get(timeItemLength);
             if (crate.getDisplayItemArmorStand().getEquipment() == null) return;
+
+            ItemStack reward = (ItemStack) crate.getItems().toArray()[timeItemLength];
+            if (reward.getItemMeta() == null) return;
 
             crate.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
                     "&#13F338זכית ב &#F3C313" +
-                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
-                            " &#13B3F3" + item.getAmount()
+                            reward.getItemMeta().getDisplayName() +
+                            " &#13B3F3" + reward.getAmount()
             ));
 
-            crate.getDisplayItemArmorStand().getEquipment().setHelmet(item);
-            player.getInventory().addItem(item);
+            crate.getDisplayItemArmorStand().getEquipment().setHelmet(reward);
+            player.getInventory().addItem(reward);
             player.playSound(player, Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 1);
             player.sendMessage(ColorUtils.colorString(
-                    "&r\n" +
-                            "&#13F338זכית ב &#F3C313" +
-                            (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
-                            " &#13B3F3" + item.getAmount() + "\n&r"
+                            "&r\n" +
+                                    "&#13F338זכית ב &#F3C313" +
+                                    reward.getItemMeta().getDisplayName() +
+                                    " &#13B3F3" + reward.getAmount() + "\n&r"
                     )
             );
 
@@ -76,20 +77,23 @@ public class CrateChooseItemTask extends BukkitRunnable {
             AtomicInteger timeLeftToSpin = new AtomicInteger(16);
             AtomicInteger yaw = new AtomicInteger();
 
-            crate.getCrateManager().getPlugin().getServer().getScheduler().runTaskTimer(plugin, task -> {
-                if (crate.getDisplayItemArmorStand().getEquipment() == null) task.cancel();
+            plugin.getServer().getScheduler().runTaskTimer(plugin, task -> {
+                if (crate.getDisplayItemArmorStand().getEquipment() == null) {
+                    task.cancel();
+                    return;
+                }
 
                 timeLeftToSpin.getAndDecrement();
                 yaw.addAndGet(30);
                 if (timeLeftToSpin.get() <= 0) {
                     task.cancel();
                     crate.reset();
+                    player.playSound(player, Sound.ENTITY_EXPERIENCE_BOTTLE_THROW, 1, 1);
                     return;
                 }
 
                 player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
                 crate.getDisplayItemArmorStand().setRotation(yaw.get(), 0);
-
             }, 0, 12);
 
             return;
@@ -100,13 +104,13 @@ public class CrateChooseItemTask extends BukkitRunnable {
         // showing players the items, after that choosing the item
         player.playSound(player, Sound.BLOCK_AMETHYST_BLOCK_BREAK, 3, 1);
 
-        ItemStack item = crate.getItems().stream().toList().get(isFirstRound ? firstRoundTimeLength : timeItemLength);
+        ItemStack possibleItemToGet = (ItemStack) crate.getItems().toArray()[isFirstRound ? firstRoundTimeLength : timeItemLength];
+        if (possibleItemToGet.getItemMeta() == null) return;
+
         crate.getDisplayItemArmorStand().setCustomName(ColorUtils.colorString(
-                "&#F3C713" +
-                        (item.getItemMeta() == null ? item.getType().name().toUpperCase() : item.getItemMeta().getDisplayName()) +
-                        " &#F31353" + item.getAmount()
+                "&#F3C713" + possibleItemToGet.getItemMeta().getDisplayName() + " &#F31353" + possibleItemToGet.getAmount()
         ));
 
-        crate.getDisplayItemArmorStand().getEquipment().setHelmet(item);
+        crate.getDisplayItemArmorStand().getEquipment().setHelmet(possibleItemToGet);
     }
 }
