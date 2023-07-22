@@ -13,14 +13,17 @@ import org.bukkit.entity.Player;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class DeleteCrateSubCommand implements SubCommand {
+public class TpSubCommand implements SubCommand {
 
     private final CrateManager crateManager;
 
     @Override
     public void execute(Player player, String[] args) {
-        if (args.length < 2) {
-            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך לציין שם לארנה שאתה רוצה למחוק."));
+        if (args.length == 1) {
+            player.sendMessage(ColorUtils.colorChat(
+                    TextColor.WRONG_USAGE,
+                    "אתה צריך לספק שם לתיבה שאתה רוצה להשתגר אלייה."
+            ));
             return;
         }
 
@@ -35,17 +38,20 @@ public class DeleteCrateSubCommand implements SubCommand {
             return;
         }
 
-        crateManager.deleteCrate(optionalCrate.get());
-        player.sendMessage(ColorUtils.colorString(TextColor.SUCCESS + "התיבה הוסרה בהצלחה!"));
+        player.teleport(optionalCrate.get().getLocation());
+        player.sendMessage(ColorUtils.colorChat(
+                TextColor.SUCCESS,
+                "השתגרת לתיבה בהצלחה!"
+        ));
     }
 
     @Override
     public String getName() {
-        return "delete";
+        return "tp";
     }
 
     @Override
     public String getDescription() {
-        return "מוחק תיבה";
+        return "משתגר לתיבה.";
     }
 }

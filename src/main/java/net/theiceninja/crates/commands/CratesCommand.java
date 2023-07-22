@@ -25,7 +25,8 @@ import java.util.Set;
                 "givekey",
                 "removeitem",
                 "help",
-                "createCustomItem" // later
+                "createCustomItem", // later
+                "tp"
         }
 )
 public class CratesCommand extends PluginCommand {
@@ -39,6 +40,7 @@ public class CratesCommand extends PluginCommand {
         subCommands.add(new RemoveItemSubCommand(crateManager));
         subCommands.add(new ListSubCommand(crateManager));
         subCommands.add(new CreateCrateSubCommand(crateManager));
+        subCommands.add(new TpSubCommand(crateManager));
         subCommands.add(new HelpSubCommand(subCommands, getCommandInfo()));
     }
 
@@ -47,7 +49,7 @@ public class CratesCommand extends PluginCommand {
         if (args.length == 0) {
             player.sendMessage(ColorUtils.colorChat(
                     TextColor.WRONG_USAGE,
-                    "Usage: /crates <delete|add|list|additem|givekey|removeitem>"
+                    "Usage: /crates <delete|create|list|additem|givekey|removeitem|tp|createCustomItem|help>"
             ));
             return;
         }
@@ -58,7 +60,7 @@ public class CratesCommand extends PluginCommand {
         if (optionalSubCommand.isEmpty()) {
             player.sendMessage(ColorUtils.colorChat(
                     TextColor.WRONG_USAGE,
-                    "Usage: /crates <delete|add|list|additem|givekey|removeitem>"
+                    "Usage: /crates <delete|create|list|additem|givekey|removeitem|tp|createCustomItem|help>"
             ));
             return;
         }
