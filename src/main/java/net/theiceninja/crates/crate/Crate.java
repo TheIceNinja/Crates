@@ -214,7 +214,7 @@ public class Crate implements ICrate {
 
     @Override
     public void chooseItem(@NotNull Player player) {
-        int randomNumber = ThreadLocalRandom.current().nextInt(0, items.size() - 1);
+        int randomNumber = ThreadLocalRandom.current().nextInt(0, items.size() + 1);
         if (this.chooseItemTask != null) this.chooseItemTask.cancel();
 
         this.chooseItemTask = new CrateChooseItemTask(
