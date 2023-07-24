@@ -39,7 +39,6 @@ public class Crate implements ICrate {
     @Setter private Location location;
     private final Set<ItemStack> items;
 
-    private final Set<ArmorStand> armorStands = new HashSet<>();
     private final CrateManager crateManager;
 
     // loading from configuration file
