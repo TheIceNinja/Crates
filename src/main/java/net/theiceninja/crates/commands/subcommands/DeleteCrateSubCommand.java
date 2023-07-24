@@ -20,7 +20,7 @@ public class DeleteCrateSubCommand implements SubCommand {
     @Override
     public void execute(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך לציין שם לארנה שאתה רוצה למחוק."));
+            player.sendMessage(ColorUtils.colorString("&#E81E33אתה צריך לציין שם לתיבה שאתה רוצה למחוק."));
             return;
         }
 

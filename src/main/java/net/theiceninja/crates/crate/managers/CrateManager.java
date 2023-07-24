@@ -103,7 +103,7 @@ public class CrateManager implements ICrateManager {
                     items.add(itemStack);
                 });
 
-            Crate crate = new Crate(
+           final Crate crate = new Crate(
                     crateSection.getInt("id"),
                     CrateType.valueOf(crateSection.getString("type")),
                     cratesFile.readLocation("crates." + crateID + ".location"),
