@@ -168,6 +168,8 @@ public class Crate implements ICrate {
 
     @Override
     public void delete() {
+        if (chooseItemTask != null) chooseItemTask.cancel();
+
         destroyArmorStand();
         location.getBlock().setType(Material.AIR);
         items.clear();
