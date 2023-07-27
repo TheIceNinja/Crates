@@ -1,12 +1,12 @@
 package net.theiceninja.crates.commands.subcommands;
 
 import net.theiceninja.crates.api.crate.CrateType;
-import net.theiceninja.utilitys.Messages;
-import net.theiceninja.utilitys.java.NumberUtils;
-import net.theiceninja.utilitys.spigot.ItemBuilder;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.color.TextColor;
-import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
+import net.theiceninja.utils.Messages;
+import net.theiceninja.utils.java.NumberUtils;
+import net.theiceninja.utils.spigot.ItemBuilder;
+import net.theiceninja.utils.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.TextColor;
+import net.theiceninja.utils.spigot.handlers.command.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 

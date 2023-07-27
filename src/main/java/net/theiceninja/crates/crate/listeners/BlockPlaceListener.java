@@ -1,7 +1,7 @@
 package net.theiceninja.crates.crate.listeners;
 
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.color.TextColor;
+import net.theiceninja.utils.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.TextColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public class BlockPlaceListener implements Listener {
         if (event.getItemInHand().getItemMeta().getDisplayName().contains("מפתח")) {
             event.setBuild(false);
             event.getPlayer().sendMessage(ColorUtils.colorChat(
-                    TextColor.AQUA,
+                    TextColor.GOLD,
                     "אתה לא יכול לשים מפתח על הרצפה!"
             ));
         }

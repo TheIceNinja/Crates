@@ -2,8 +2,8 @@ package net.theiceninja.crates.commands.subcommands;
 
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.crate.managers.CrateManager;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
+import net.theiceninja.utils.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.handlers.command.SubCommand;
 import org.bukkit.entity.Player;
 
 @RequiredArgsConstructor

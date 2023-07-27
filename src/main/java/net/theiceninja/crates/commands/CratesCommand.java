@@ -1,13 +1,19 @@
 package net.theiceninja.crates.commands;
 
+import net.theiceninja.crates.commands.subcommands.AddItemSubCommand;
+import net.theiceninja.crates.commands.subcommands.CreateCrateSubCommand;
+import net.theiceninja.crates.commands.subcommands.DeleteCrateSubCommand;
+import net.theiceninja.crates.commands.subcommands.GiveKeySubCommand;
+import net.theiceninja.crates.commands.subcommands.ListSubCommand;
+import net.theiceninja.crates.commands.subcommands.RemoveItemSubCommand;
+import net.theiceninja.crates.commands.subcommands.TpSubCommand;
 import net.theiceninja.crates.crate.managers.CrateManager;
-import net.theiceninja.crates.commands.subcommands.*;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.color.TextColor;
-import net.theiceninja.utilitys.spigot.handlers.command.CommandInfo;
-import net.theiceninja.utilitys.spigot.handlers.command.PluginCommand;
-import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
-import net.theiceninja.utilitys.spigot.handlers.command.subcommand.HelpSubCommand;
+import net.theiceninja.utils.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.TextColor;
+import net.theiceninja.utils.spigot.handlers.command.CommandInfo;
+import net.theiceninja.utils.spigot.handlers.command.PluginCommand;
+import net.theiceninja.utils.spigot.handlers.command.SubCommand;
+import net.theiceninja.utils.spigot.handlers.command.subcommand.HelpSubCommand;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;

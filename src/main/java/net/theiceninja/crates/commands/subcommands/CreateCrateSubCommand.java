@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.managers.CrateManager;
-import net.theiceninja.utilitys.Messages;
-import net.theiceninja.utilitys.java.NumberUtils;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
-import net.theiceninja.utilitys.spigot.handlers.command.SubCommand;
+import net.theiceninja.utils.Messages;
+import net.theiceninja.utils.java.NumberUtils;
+import net.theiceninja.utils.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.handlers.command.SubCommand;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;

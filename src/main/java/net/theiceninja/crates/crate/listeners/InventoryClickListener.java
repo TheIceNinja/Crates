@@ -1,6 +1,6 @@
 package net.theiceninja.crates.crate.listeners;
 
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.ColorUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

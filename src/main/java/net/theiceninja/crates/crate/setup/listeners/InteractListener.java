@@ -3,7 +3,7 @@ package net.theiceninja.crates.crate.setup.listeners;
 import lombok.RequiredArgsConstructor;
 import net.theiceninja.crates.crate.Crate;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.ColorUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;

@@ -1,7 +1,7 @@
 package net.theiceninja.crates.crate.tasks;
 
 import net.theiceninja.crates.crate.Crate;
-import net.theiceninja.utilitys.spigot.color.ColorUtils;
+import net.theiceninja.utils.spigot.color.ColorUtils;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

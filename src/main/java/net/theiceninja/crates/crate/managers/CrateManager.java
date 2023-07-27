@@ -13,7 +13,7 @@ import net.theiceninja.crates.crate.listeners.EntityExplodeListener;
 import net.theiceninja.crates.crate.listeners.InventoryClickListener;
 import net.theiceninja.crates.crate.listeners.PlayerInteractAtEntityListener;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
-import net.theiceninja.utilitys.spigot.config.ConfigurationFile;
+import net.theiceninja.utils.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
