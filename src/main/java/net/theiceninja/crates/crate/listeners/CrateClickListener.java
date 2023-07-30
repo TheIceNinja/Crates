@@ -21,7 +21,7 @@ public class CrateClickListener implements Listener {
 
         Crate crate = crateManager.getCrateFromBlock(event.getClickedBlock());
         switch (event.getAction()) {
-            case LEFT_CLICK_BLOCK -> event.getPlayer().openInventory(crate.getInventory());
+            case LEFT_CLICK_BLOCK -> event.getPlayer().openInventory(crate.getItemsInventory());
             case RIGHT_CLICK_BLOCK -> {
                 event.setUseInteractedBlock(Event.Result.DENY);
                 if (!event.hasItem()) {
