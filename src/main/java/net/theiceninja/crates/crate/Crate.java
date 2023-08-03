@@ -39,8 +39,6 @@ public class Crate implements ICrate {
     @Setter private Location location;
     private final Set<ItemStack> items;
 
-    private Inventory itemsInventory;
-
     private final CrateManager crateManager;
 
     // loading from configuration file
@@ -57,17 +55,6 @@ public class Crate implements ICrate {
         this.crateManager = crateManager;
 
         setupArmorStands();
-        itemsInventory = crateManager.getPlugin().getServer().createInventory(
-                null,
-                36,
-                "דברים שאתה יכול לקבל"
-        );
-        itemsInventory.setItem(
-                31,
-                new ItemBuilder(Material.BARRIER)
-                        .setDisplayName(TextColor.RED + "יציאה")
-                        .build()
-        );
     }
 
     // creating the chest
@@ -79,6 +66,19 @@ public class Crate implements ICrate {
     }
 
     public Inventory getItemsInventory() {
+       Inventory itemsInventory = crateManager.getPlugin().getServer().createInventory(
+                null,
+                36,
+                "דברים שאתה יכול לקבל"
+        );
+        itemsInventory.setItem(
+                31,
+                new ItemBuilder(Material.BARRIER)
+                        .setDisplayName(TextColor.RED + "יציאה")
+                        .build()
+        );
+
+
         for (int i = 0; i < items.size(); i++) {
             if (i == 27) break;
 
