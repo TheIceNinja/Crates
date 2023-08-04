@@ -114,8 +114,7 @@ public class CrateManager implements ICrateManager {
 
             plugin.getLogger().info(
                     "Loading crate: " + crate.getId() + " " +
-                            "Rarity: " + crate.getType().name().toUpperCase() + " " +
-                            "Items: " + Arrays.toString(crate.getItems().toArray())
+                            "Rarity: " + crate.getType().name().toUpperCase()
             );
         }
     }
