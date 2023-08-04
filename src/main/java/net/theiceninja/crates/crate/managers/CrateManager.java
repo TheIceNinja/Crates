@@ -6,12 +6,7 @@ import net.theiceninja.crates.api.crate.CrateType;
 import net.theiceninja.crates.api.crate.ICrate;
 import net.theiceninja.crates.api.crate.managers.ICrateManager;
 import net.theiceninja.crates.crate.Crate;
-import net.theiceninja.crates.crate.listeners.BlockBreakListener;
-import net.theiceninja.crates.crate.listeners.BlockPlaceListener;
-import net.theiceninja.crates.crate.listeners.CrateClickListener;
-import net.theiceninja.crates.crate.listeners.EntityExplodeListener;
-import net.theiceninja.crates.crate.listeners.InventoryClickListener;
-import net.theiceninja.crates.crate.listeners.PlayerInteractAtEntityListener;
+import net.theiceninja.crates.crate.listeners.*;
 import net.theiceninja.crates.crate.setup.CrateSetupHandler;
 import net.theiceninja.utils.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
@@ -19,7 +14,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -28,10 +22,9 @@ import java.util.Set;
 public class CrateManager implements ICrateManager {
 
     private final Set<Crate> crateList = new HashSet<>();
-
     private final ConfigurationFile cratesFile;
-
     private final CrateSetupHandler crateSetupHandler;
+
     private final CratesPlugin plugin;
 
     public CrateManager(CratesPlugin plugin) {
