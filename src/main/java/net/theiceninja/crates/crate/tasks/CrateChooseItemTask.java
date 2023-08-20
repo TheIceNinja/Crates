@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.script.ScriptEngine;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 

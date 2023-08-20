@@ -66,7 +66,7 @@ public class Crate implements ICrate {
     }
 
     public Inventory getItemsInventory() {
-       Inventory itemsInventory = crateManager.getPlugin().getServer().createInventory(
+        Inventory itemsInventory = crateManager.getPlugin().getServer().createInventory(
                 null,
                 36,
                 "דברים שאתה יכול לקבל"

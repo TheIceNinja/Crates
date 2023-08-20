@@ -43,6 +43,7 @@ public class AddItemSubCommand implements SubCommand {
             return;
         }
 
+        player.getInventory().removeItem(item);
         optionalCrate.get().addItem(item);
         player.sendMessage(ColorUtils.colorString(TextColor.SUCCESS + "הוספת בהצלחה!"));
     }
