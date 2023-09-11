@@ -15,9 +15,7 @@ public final class CratesPlugin extends JavaPlugin {
     public void onEnable() {
         this.crateManager = new CrateManager(this);
 
-        CratesCommand cratesCommand = new CratesCommand(crateManager);
-        getCommand("crates").setExecutor(cratesCommand);
-        getCommand("crates").setTabCompleter(cratesCommand);
+        getCommand("crates").setExecutor(new CratesCommand(crateManager));
     }
 
     @Override
