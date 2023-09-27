@@ -22,14 +22,13 @@ import java.util.UUID;
 
 public class CrateSetupHandler implements ISetupHandler {
 
-    @Getter private final Map<UUID, Crate> setup;
+    @Getter private final Map<UUID, Crate> setup = new HashMap<>();
 
     @Getter private final CrateManager crateManager;
     private final PlayerRollbackHandler rollbackHandler;
 
     public CrateSetupHandler(CrateManager crateManager) {
         this.crateManager = crateManager;
-        this.setup = new HashMap<>();
         this.rollbackHandler = new PlayerRollbackHandler();
 
         crateManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), crateManager.getPlugin());
