@@ -14,6 +14,7 @@ import net.theiceninja.utils.spigot.handlers.PlayerRollbackHandler;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -31,10 +32,11 @@ public class CrateSetupHandler implements ISetupHandler {
         this.crateManager = crateManager;
         this.rollbackHandler = new PlayerRollbackHandler();
 
-        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), crateManager.getPlugin());
-        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new InteractListener(this), crateManager.getPlugin());
-        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new DropItemsListener(this), crateManager.getPlugin());
-        crateManager.getPlugin().getServer().getPluginManager().registerEvents(new QuitListener(this), crateManager.getPlugin());
+        Plugin plugin = crateManager.getPlugin();
+        plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new InteractListener(this), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new DropItemsListener(this), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new QuitListener(this), plugin);
     }
 
     @Override
@@ -42,7 +44,6 @@ public class CrateSetupHandler implements ISetupHandler {
         Crate crate = (Crate) iCrate;
         setup.put(player.getUniqueId(), crate);
         rollbackHandler.save(player);
-        player.getInventory().clear();
 
         player.setGameMode(GameMode.CREATIVE);
         player.getInventory().setItem(
@@ -74,7 +75,6 @@ public class CrateSetupHandler implements ISetupHandler {
     @Override
     public void removeFromSetup(final @NotNull Player player) {
         setup.remove(player.getUniqueId());
-        player.getInventory().clear();
         rollbackHandler.restore(player);
     }
 
