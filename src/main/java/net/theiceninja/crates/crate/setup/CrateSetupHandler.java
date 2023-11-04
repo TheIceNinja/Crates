@@ -15,6 +15,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -33,10 +34,11 @@ public class CrateSetupHandler implements ISetupHandler {
         this.rollbackHandler = new PlayerRollbackHandler();
 
         Plugin plugin = crateManager.getPlugin();
-        plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new InteractListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new DropItemsListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new QuitListener(this), plugin);
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
+        pluginManager.registerEvents(new BlockPlaceListener(this), plugin);
+        pluginManager.registerEvents(new InteractListener(this), plugin);
+        pluginManager.registerEvents(new DropItemsListener(this), plugin);
+        pluginManager.registerEvents(new QuitListener(this), plugin);
     }
 
     @Override

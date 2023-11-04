@@ -17,6 +17,7 @@ import net.theiceninja.utils.spigot.config.ConfigurationFile;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -38,12 +39,13 @@ public class CrateManager implements ICrateManager {
         this.crateSetupHandler = new CrateSetupHandler(this);
         loadCrates();
 
-        plugin.getServer().getPluginManager().registerEvents(new CrateClickListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new InventoryClickListener(), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new EntityExplodeListener(this), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(this), plugin);
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
+        pluginManager.registerEvents(new CrateClickListener(this), plugin);
+        pluginManager.registerEvents(new InventoryClickListener(), plugin);
+        pluginManager.registerEvents(new BlockBreakListener(this), plugin);
+        pluginManager.registerEvents(new BlockPlaceListener(), plugin);
+        pluginManager.registerEvents(new EntityExplodeListener(this), plugin);
+        pluginManager.registerEvents(new PlayerInteractAtEntityListener(this), plugin);
     }
 
     public Crate getCrateFromBlock(@NotNull Block block) {
@@ -91,7 +93,7 @@ public class CrateManager implements ICrateManager {
 
         for (String crateID : cratesFile.get().getConfigurationSection("crates").getKeys(false)) {
             final ConfigurationSection crateSection = cratesFile.get().getConfigurationSection("crates." + crateID);
-            if (crateSection == null) break;
+            if (crateSection == null) continue;
 
             final Set<ItemStack> items = new HashSet<>();
             if (crateSection.getConfigurationSection("items") != null)
